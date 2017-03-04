@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mdfind "$1" -0 | xargs -0 grep "$@"

@@ -1,7 +1,3 @@
-function @() {
-    test -r "$1" && . "$1"
-}
-
 function md() {
     mkdir -p "$1" && builtin cd "$1" && pwd
 }

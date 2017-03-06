@@ -1,21 +1,23 @@
 # -*- sh -*-
 
-[ $INITIALIZED ] && return || INITIALIZED=true
-
 export SAO_DIR="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 
 if [[ "$SHELL" == *bash ]]; then
-    INITS="$SAO_DIR/common/??-*.{,ba}sh"
+    __INITS="$SAO_DIR/common/??-*.{,ba}sh"
 else if [[ "$SHELL" == *zsh ]]; then
-         INITS="$SAO_DIR/common/??-*.{,z}sh"
+         __INITS="$SAO_DIR/common/??-*.{,z}sh"
      else
          echo "This shell is not supported :("
          exit 1
      fi
 fi
 
-for init in $(eval echo $INITS); do
-    . "$init"
-done
+function init_loader() {
+    for init in $(eval echo $__INITS); do
+        . "$init"
+    done
+}
 
-unset INITIALIZED
+function @() {
+    test -r "$1" && . "$1"
+}

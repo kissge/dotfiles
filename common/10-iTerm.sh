@@ -1,4 +1,4 @@
-if [ $ITERM_SESSION_ID -a -z "$EMACS" ]; then
+if [ "$ITERM_SESSION_ID" -a -z "$EMACS" ]; then
     # Show cwd in the title bar
     export PROMPT_COMMAND='echo -ne "\033];${PWD/#$HOME/~}\007"; '"$PROMPT_COMMAND"
 

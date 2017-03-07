@@ -3,8 +3,13 @@
 export SAO_DIR="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 
 if [[ "$SHELL" == *bash ]]; then
+    __BASH=1
     __INITS="$SAO_DIR/common/??-*.{,ba}sh"
 else if [[ "$SHELL" == *zsh ]]; then
+         # http://yo.eki.do/notes/tramp-mode
+         [[ "$TERM" == "dumb" ]] && unsetopt zle && PS1="$ " && return
+
+         __ZSH=1
          __INITS="$SAO_DIR/common/??-*.{,z}sh"
      else
          echo "This shell is not supported :("

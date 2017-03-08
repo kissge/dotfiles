@@ -2,8 +2,8 @@ if [ -z "$EMACS" ]; then
     # Show cwd in the title bar
     export PROMPT_COMMAND='echo -ne "\033];${PWD/#$HOME/~}\007"; '"$PROMPT_COMMAND"
 
-    test "$__BASH" -a -e "${HOME}/.iterm2_shell_integration.bash" && . "${HOME}/.iterm2_shell_integration.bash"
-    test "$__ZSH" -a -e "${HOME}/.iterm2_shell_integration.zsh" && . "${HOME}/.iterm2_shell_integration.zsh"
+    @bash "${HOME}/.iterm2_shell_integration.bash"
+    @zsh "${HOME}/.iterm2_shell_integration.zsh"
 
     if [ $ITERM_SHELL_INTEGRATION_INSTALLED ]; then
         function ssh() {

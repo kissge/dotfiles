@@ -26,3 +26,11 @@ function init_loader() {
 function @() {
     test -r "$1" && . "$1"
 }
+
+function @bash() {
+    test "$__BASH" && @ "$1"
+}
+
+function @zsh() {
+    test "$__ZSH" && @ "$1"
+}

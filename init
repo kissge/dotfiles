@@ -34,3 +34,8 @@ function @bash() {
 function @zsh() {
     test "$__ZSH" && @ "$1"
 }
+
+function sao_version() {
+    [ -n "$(git -C "$SAO_DIR" status --porcelain)" ] && echo -n "(Modified from) "
+    git -C "$SAO_DIR" log -1 --format=%cd --date=iso8601 | cat
+}

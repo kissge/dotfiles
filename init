@@ -37,5 +37,5 @@ function @zsh() {
 
 function sao_version() {
     [ -n "$(git -C "$SAO_DIR" status --porcelain)" ] && echo -n "(Modified from) "
-    git -C "$SAO_DIR" log -1 --format=%cd --date=iso8601 | cat
+    TZ=Asia/Tokyo git -C "$SAO_DIR" --no-pager log -1 --format=%cd --date=iso8601-strict-local
 }

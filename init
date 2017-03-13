@@ -39,3 +39,7 @@ function sao_version() {
     [ -n "$(git -C "$SAO_DIR" status --porcelain)" ] && echo -n "(Modified from) "
     TZ=Asia/Tokyo git -C "$SAO_DIR" --no-pager log -1 --format=%cd --date=iso8601-strict-local
 }
+
+function sao_pull() {
+    git -C "$SAO_DIR" pull
+}

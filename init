@@ -23,7 +23,7 @@ function init_loader() {
     done
 }
 
-function @() {
+function @ {
     test -r "$1" && . "$1"
 }
 

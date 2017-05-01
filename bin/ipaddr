@@ -1,0 +1,4 @@
+#!/bin/bash
+
+device=${1:-eth0}
+ip addr show "$device" | grep -oE 'inet ([0-9]{,3}\.?){4}' | cut -d' ' -f2

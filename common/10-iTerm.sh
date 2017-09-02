@@ -1,4 +1,6 @@
-if [ -z "$EMACS" ]; then
+$SAO_DIR/common/isiterm2 && _ITERM=1 || _ITERM=
+
+if [ "$_ITERM" -a -z "$EMACS" ]; then
     # Show cwd in the title bar
     export PROMPT_COMMAND='echo -ne "\033];${PWD/#$HOME/~}\007"; '"$PROMPT_COMMAND"
 

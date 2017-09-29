@@ -1,4 +1,4 @@
-$SAO_DIR/common/isiterm2 && _ITERM=1 || _ITERM=
+# $SAO_DIR/common/isiterm2 && _ITERM=1 || _ITERM=
 
 if [ "$_ITERM" -a -z "$EMACS" ]; then
     # Show cwd in the title bar

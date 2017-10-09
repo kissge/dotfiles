@@ -16,3 +16,7 @@ function cd() {
          fi
     fi
 }
+
+function @exist() {
+  which "$1" > /dev/null 2>&1
+}

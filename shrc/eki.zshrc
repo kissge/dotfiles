@@ -2,10 +2,12 @@
 
 . ${HOME}/.sao/init
 
-export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-eval "$(rbenv init -)"
-
 init_loader
+
+if @exist rbenv; then
+    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
 
 ZSH_THEME=philips
 plugins=(git)

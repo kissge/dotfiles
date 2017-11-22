@@ -22,3 +22,12 @@ if [ "$_ITERM" -a -n "$TMUX" -a "$TERM" = "screen" ]; then
         iterm2_set_user_var hostname "$_HOSTNAME"
     }
 fi
+
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+if @exist symfony-autocomplete; then
+    eval "$(symfony-autocomplete)"
+fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

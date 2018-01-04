@@ -1,4 +1,4 @@
-DOWNLOADS=${HOME}/Downloads
+DOWNLOADS=${HOME}/Downloads/
 
 if [ ! "$EMACS" -a -d "$DOWNLOADS" ]; then
     if find -atime +1d 2> /dev/null; then

@@ -1,4 +1,4 @@
-export PATH="$SAO_DIR/bin/vendor:$SAO_DIR/bin:$PATH"
+export PATH="$HOME/bin:$SAO_DIR/bin/vendor:$SAO_DIR/bin:$PATH"
 
 export LANG=en_US.UTF-8
 export LANGUAGE="$LANG"

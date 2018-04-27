@@ -19,3 +19,22 @@ end
 
 # Looks like Amazon Linux 2 doesn't have chsh?
 execute "usermod --shell /bin/zsh #{node['user']}"
+
+execute 'Install diff-so-fancy' do
+  user 'root'
+  cwd '/usr/bin'
+  command <<EOS
+      wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/diff-so-fancy &&
+      chmod +x diff-so-fancy &&
+      mkdir -p lib &&
+      cd lib &&
+      wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/lib/DiffHighlight.pm
+EOS
+  not_if 'which diff-so-fancy'
+end
+
+remote_file "/home/#{node['user']}/.gitconfig" do
+  source '.gitconfig'
+  owner node['user']
+  not_if "test -f /home/#{node['user']}/.gitconfig"
+end

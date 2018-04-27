@@ -1,0 +1,28 @@
+[push]
+        default = current
+[pager]
+        log = diff-so-fancy | less -RFX
+        show = diff-so-fancy | less -RFX
+        diff = diff-so-fancy | less -RFX
+        grep = less -RFX
+[log]
+        abbrevCommit = true
+        decorate = short
+[fetch]
+        prune = true
+[alias]
+        unstage = reset HEAD --
+        dc = diff --cached
+        l = log --branches --graph
+        lm = log --graph master^...
+        ld = log --graph develop^...
+        cf = commit --fixup
+        rf = rebase --interactive --autosquash
+        rfa = rebase --interactive --autosquash --autostash
+        whoami = !echo `git config --get user.name` \\<`git config --get user.email`\\>
+        whowasi = log -1 --format='git config --local user.name \"%an\" && git config --local user.email \"%ae\"'
+[diff]
+        algorithm = patience
+        indentHeuristic = true
+[credential]
+        helper = cache --timeout=360000

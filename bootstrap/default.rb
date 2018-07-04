@@ -24,11 +24,11 @@ execute 'Install diff-so-fancy' do
   user 'root'
   cwd '/usr/bin'
   command <<EOS
-      wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/diff-so-fancy &&
+      curl -OL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/diff-so-fancy &&
       chmod +x diff-so-fancy &&
       mkdir -p lib &&
       cd lib &&
-      wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/lib/DiffHighlight.pm
+      curl -OL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/lib/DiffHighlight.pm
 EOS
   not_if 'which diff-so-fancy'
 end

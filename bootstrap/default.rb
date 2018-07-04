@@ -38,3 +38,9 @@ remote_file "/home/#{node['user']}/.gitconfig" do
   owner node['user']
   not_if "test -f /home/#{node['user']}/.gitconfig"
 end
+
+remote_file "/home/#{node['user']}/.tmux.conf" do
+  source '.tmux.conf'
+  owner node['user']
+  not_if "test -f /home/#{node['user']}/.tmux.conf"
+end

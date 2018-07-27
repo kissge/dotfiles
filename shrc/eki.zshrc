@@ -9,8 +9,8 @@ if @exist rbenv; then
     eval "$(rbenv init -)"
 fi
 
-ZSH_THEME=philips
-plugins=(git)
+ZSH_THEME=../../../../..$SAO_DIR/common/bullet-train-modified
+plugins=(git history-substring-search)
 oh-my-zsh
 
 if [ "$_ITERM" -a -n "$TMUX" -a "$TERM" = "screen" ]; then

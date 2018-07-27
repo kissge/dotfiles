@@ -3,6 +3,7 @@ function magic-enter() {
     if [ -z "$BUFFER" ]; then
         echo
         git status
+        echo $'\n'
         zle reset-prompt
     else
         zle accept-line

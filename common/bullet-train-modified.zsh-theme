@@ -1,3 +1,4 @@
+# -*- sh -*-
 # README
 #
 # In order for this theme to render correctly, you will need a
@@ -25,9 +26,9 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     dir
     screen
     perl
-    ruby
+#   ruby
     virtualenv
-    nvm
+#   nvm
     aws
     go
     rust
@@ -363,10 +364,10 @@ prompt_end() {
 # to be shown
 # ------------------------------------------------------------------------------
 
-# Context: user@hostname (who am I and where am I)
+# Context: hostname (where am I)
 context() {
   local user="$(whoami)"
-  [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "${user}@$BULLETTRAIN_CONTEXT_HOSTNAME"
+  [[ "$user" != "$BULLETTRAIN_CONTEXT_DEFAULT_USER" || -n "$BULLETTRAIN_IS_SSH_CLIENT" ]] && echo -n "$BULLETTRAIN_CONTEXT_HOSTNAME"
 }
 
 prompt_context() {
@@ -558,7 +559,7 @@ prompt_kctx() {
   if command -v kubectl > /dev/null 2>&1; then
     if [[ -f $BULLETTRAIN_KCTX_KCONFIG ]]; then
       prompt_segment $BULLETTRAIN_KCTX_BG $BULLETTRAIN_KCTX_FG $BULLETTRAIN_KCTX_PREFIX" $(cat $BULLETTRAIN_KCTX_KCONFIG|grep current-context| awk '{print $2}')"
-    fi  
+    fi
   fi
 }
 
@@ -606,9 +607,9 @@ prompt_screen() {
 
 prompt_time() {
   if [[ $BULLETTRAIN_TIME_12HR == true ]]; then
-    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%r}
+    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%r%Z}
   else
-    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%T}
+    prompt_segment $BULLETTRAIN_TIME_BG $BULLETTRAIN_TIME_FG %D{%T%Z}
   fi
 }
 

@@ -12,6 +12,7 @@ fi
 ZSH_THEME=../../../../..$SAO_DIR/common/bullet-train-modified
 plugins=(git history-substring-search)
 BULLETTRAIN_DIR_EXTENDED=2
+BULLETTRAIN_VIRTUALENV_PREFIX=🅿
 oh-my-zsh
 
 if [ "$_ITERM" -a -n "$TMUX" -a "$TERM" = "screen" ]; then

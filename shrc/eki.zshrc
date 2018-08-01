@@ -10,7 +10,7 @@ if @exist rbenv; then
 fi
 
 ZSH_THEME=../../../../..$SAO_DIR/common/bullet-train-modified
-plugins=(git history-substring-search)
+plugins=(git history-substring-search pip)
 BULLETTRAIN_DIR_EXTENDED=2
 BULLETTRAIN_VIRTUALENV_PREFIX=🅿
 oh-my-zsh

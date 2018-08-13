@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. ${HOME}/.line-api-token
+SECONDS=0
+bash -c "$@"
+exitcode=$?
+if [ $exitcode -eq 0 ]; then
+  result=👌
+else
+  result="😢 $exitcode"
+fi
+curl -X POST -H "Authorization: Bearer $TOKEN" -F message="$result"$'\n'"$SECONDS s"$'\n'"$*"$'\n'"$(whoami)@$(hostname)" https://notify-api.line.me/api/notify

@@ -2,7 +2,7 @@
 
 . ${HOME}/.line-api-token
 SECONDS=0
-bash -c "$@"
+bash -c "$*"
 exitcode=$?
 if [ $exitcode -eq 0 ]; then
   result=👌

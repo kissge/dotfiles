@@ -9,4 +9,4 @@ if [ $exitcode -eq 0 ]; then
 else
   result="😢 $exitcode"
 fi
-curl -X POST -H "Authorization: Bearer $TOKEN" -F message="$result"$'\n'"$SECONDS s"$'\n'"$*"$'\n'"$(whoami)@$(hostname)" https://notify-api.line.me/api/notify
+curl -X POST -H "Authorization: Bearer $TOKEN" -F message="$(sed 's/;/；/g' <<< "$result"$'\n'"$SECONDS s"$'\n'"$*"$'\n'"$(whoami)@$(hostname)")" https://notify-api.line.me/api/notify

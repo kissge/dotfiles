@@ -9,7 +9,7 @@ if [ ! "$EMACS" -a -d "$DOWNLOADS" ]; then
         FINDCOMMAND="find $DOWNLOADS -maxdepth 1 -mindepth 1 -atime +3"
     fi
 
-    OLDERFILES=$($FINDCOMMAND -exec ls -tdlu {} \+)
+    OLDERFILES=$(eval $FINDCOMMAND -exec ls -tdlu {} \+)
 
     if [ -n "$OLDERFILES" ]; then
         echo 'These file(s) have not been accessed for more than three days:' >&2
@@ -18,6 +18,6 @@ if [ ! "$EMACS" -a -d "$DOWNLOADS" ]; then
     fi
 
     function clean_older_files() {
-        $FINDCOMMAND -exec rm -rfv {} \+ | command less -RFX
+        eval $FINDCOMMAND -exec rm -rfv {} \+ | command less -RFX
     }
 fi

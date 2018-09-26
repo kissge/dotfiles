@@ -1,0 +1,30 @@
+#!/bin/bash
+
+function mywslpath() {
+  sed 's@\\@/@g; s@\b\([a-zA-Z]\):/@/mnt/\L\1/@' <<< "$1"
+}
+
+function mywslpath-reverse() {
+  in="$(cat)"
+  if grep -q '^/mnt/[a-zA-Z]/' <<< "$in"; then
+    sed 's@^/mnt/\([a-zA-Z]\)@\U\1:@; s@/@\\@g' <<< "$in"
+  else
+    echo "$in"
+  fi
+}
+
+cwd=$(mywslpath "$1")
+shift
+command=$1
+shift
+
+args=()
+for arg; do
+  args+=($(mywslpath "$arg"))
+done
+
+echo "$@" >> $HOME/.everything.log
+echo -n cd "\"$cwd\"; " >> $HOME/.everything.log
+cd "$cwd"
+echo $command "${args[@]}" >> $HOME/.everything.log
+$command "${args[@]}" | mywslpath-reverse

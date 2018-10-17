@@ -34,7 +34,7 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
     rust
     elixir
     git
-    hg
+#   hg
     cmd_exec_time
   )
 fi
@@ -417,12 +417,12 @@ prompt_custom() {
 
 # Git
 prompt_git() {
-  if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" == "1" ]]; then
-    return
-  fi
+  # if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" == "1" ]]; then
+  #   return
+  # fi
 
   local ref dirty mode repo_path git_prompt
-  repo_path=$(git rev-parse --git-dir 2>/dev/null)
+  # repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     if [[ $BULLETTRAIN_GIT_COLORIZE_DIRTY == true && -n $(git status --porcelain --ignore-submodules) ]]; then

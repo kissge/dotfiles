@@ -12,6 +12,7 @@
         prune = true
 [alias]
         unstage = reset HEAD --
+        canoe = commit --amend --no-edit
         dc = diff --cached
         l = log --branches --graph
         lm = log --graph master^...

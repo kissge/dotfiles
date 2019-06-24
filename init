@@ -2,10 +2,10 @@
 
 export SAO_DIR="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 
-if [[ "$SHELL" == *bash ]]; then
+if [ -n "$BASH_VERSION" ]; then
     __BASH=1
     __INITS="$SAO_DIR/common/??-*.{,ba}sh"
-else if [[ "$SHELL" == *zsh ]]; then
+else if [ -n "$ZSH_VERSION" ]; then
          # http://yo.eki.do/notes/tramp-mode
          [[ "$TERM" == "dumb" ]] && unsetopt zle && PS1="$ " && return
 

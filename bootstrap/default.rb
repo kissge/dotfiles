@@ -2,8 +2,12 @@ package 'git'
 package 'zsh'
 package 'tmux'
 
-execute 'git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh' do
+execute 'Setup Oh My Zsh' do
   user node['user']
+  command <<EOS
+      git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+      git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+  EOS
   not_if 'test -d ~/.oh-my-zsh'
 end
 

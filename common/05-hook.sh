@@ -21,3 +21,7 @@ if [ ! "$EMACS" -a -d "$DOWNLOADS" ]; then
         eval $FINDCOMMAND -exec rm -rfv {} \+ | command less -RFX
     }
 fi
+
+if test "$__WSL"; then
+    grep -q automatic /etc/resolv.conf || echo '[Alert] /etc/resolv.conf might be broken?'
+fi

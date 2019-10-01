@@ -17,6 +17,11 @@ else if [ -n "$ZSH_VERSION" ]; then
      fi
 fi
 
+# Check if the shell is running on WSL
+if [ -f /proc/sys/kernel/osrelease ] && grep -q Microsoft /proc/sys/kernel/osrelease; then
+    __WSL=1
+fi
+
 function init_loader() {
     for init in $(eval echo $__INITS); do
         . "$init"

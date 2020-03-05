@@ -23,6 +23,7 @@
         whoami = !echo `git config --get user.name` \\<`git config --get user.email`\\>
         whowasi = log -1 --format='git config --local user.name \"%an\" && git config --local user.email \"%ae\"'
         bye = !git branch --merged | grep -vF '*' | xargs -r git branch -d
+        remove-untracked = !git ls-files -zo --exclude-standard | xargs -0 rm -v
 [diff]
         algorithm = patience
         indentHeuristic = true

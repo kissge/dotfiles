@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Sample usage:
+#     while :; do sleep 1; wc -l test.sh.log; done | timeuniq
+
+while read line; do
+  if [ "$line" != "$prev" ]; then
+    echo '['$(date '+%Y-%m-%dT%H:%M:%S.%N%:z')']' $line
+    prev="$line"
+  fi
+done

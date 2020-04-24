@@ -24,6 +24,7 @@
         whowasi = log -1 --format='git config --local user.name \"%an\" && git config --local user.email \"%ae\"'
         bye = !git branch --merged | grep -vF '*' | xargs -r git branch -d
         remove-untracked = !git ls-files -zo --exclude-standard | xargs -0 rm -v
+        tree = !git ls-tree -r --name-only HEAD | tree --fromfile
 [diff]
         algorithm = patience
         indentHeuristic = true

@@ -14,3 +14,5 @@ alias ggrep='ggrep --color'
 alias sudo='sudo '
 
 alias bfb='brew file brew'
+
+alias curlj='curl -H "Content-type: application/json"'

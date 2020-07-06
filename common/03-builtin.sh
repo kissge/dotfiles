@@ -8,12 +8,13 @@ function cd() {
 
     if [ -f "$LAST" ]; then
         builtin cd "${@:1:$(($# - 1))}" "$(dirname -- "$LAST")"
-    else if [ -d "$LAST" ]; then # redundant?
-             builtin cd "$@"
-         else
-             local CDPATH="$__CDPATH"
-             builtin cd "$@"
-         fi
+    elif [ -d "$LAST" ]; then # redundant?
+        builtin cd "$@"
+    elif which wslpath > /dev/null; then
+        builtin cd "$(wslpath "$@")"
+    else
+        local CDPATH="$__CDPATH"
+        builtin cd "$@"
     fi
 }
 

@@ -11,3 +11,4 @@ BULLETTRAIN_VIRTUALENV_PREFIX=🅿
 oh-my-zsh
 
 PATH=${HOME}/.gem/ruby/2.7.0/bin:$PATH
+export EDITOR=nano

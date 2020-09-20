@@ -1,0 +1,16 @@
+Include hosts_config
+
+Host *
+  ServerAliveInterval 60
+  ServerAliveCountMax 120
+
+  ControlMaster auto
+  ControlPath /tmp/ssh-%r@%h:%p
+  ControlPersist 10
+
+  # 指定された鍵だけを試す
+  IdentitiesOnly yes
+
+  LogLevel ERROR
+
+  # ForwardX11 yes

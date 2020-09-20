@@ -4,6 +4,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 brew "bat"
+brew "mas"
 brew "ruby"
 brew "tree"
 cask "1password"
@@ -15,5 +16,12 @@ cask "google-chrome"
 cask "iterm2"
 cask "karabiner-elements"
 cask "rectangle"
-cask "slack"
 cask "visual-studio-code"
+mas "Kindle", id: 405399194
+mas "LINE", id: 539883307
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft To Do", id: 1274495053
+mas "Microsoft Word", id: 462054704
+mas "OneDrive", id: 823766827
+mas "Slack", id: 803453959

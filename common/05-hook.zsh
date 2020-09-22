@@ -2,7 +2,7 @@
 function magic-enter() {
     if [ -z "$BUFFER" ]; then
         echo
-        git status 2> /dev/null || ls --color
+        git status 2> /dev/null || ls
         echo $'\n'
         zle reset-prompt
     else

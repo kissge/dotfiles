@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AllowClipboardAccess</key>
+	<true/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
 	<key>ApplePressAndHoldEnabled</key>
@@ -159,7 +161,7 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>880 726 799 448 -1080 -269 1080 1897 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1280 721 1273 696 0 0 2560 1417 </string>
+	<string>1280 0 1273 1417 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>343 181 665 484 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -784,9 +786,9 @@
 	<key>NoSyncInstallationId</key>
 	<string>284D0E7E-6486-4AAB-A5B4-6935AA0405F6</string>
 	<key>NoSyncLastTipTime</key>
-	<real>622648769.55154705</real>
+	<real>623070992.36752701</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>42</integer>
+	<integer>46</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1539,10 +1541,14 @@
 	<real>622189437.34250295</real>
 	<key>NoSyncTipsToNotShow</key>
 	<array>
-		<string>000</string>
+		<string>0003</string>
 		<string>0000</string>
+		<string>0004</string>
 		<string>0001</string>
+		<string>000</string>
+		<string>0005</string>
 		<string>0002</string>
+		<string>0006</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
@@ -1592,7 +1598,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-09-24T12:58:41Z</date>
+	<date>2020-09-29T11:00:11Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>

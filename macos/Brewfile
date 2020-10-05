@@ -36,12 +36,16 @@ cask "karabiner-elements"
 cask "microsoft-teams"
 cask "rectangle"
 cask "the-unarchiver"
+cask "virtualbox"
+cask "virtualbox-extension-pack"
 cask "visual-studio-code"
 cask "zoomus"
 mas "Kindle", id: 405399194
 mas "LINE", id: 539883307
 mas "Microsoft Excel", id: 462058435
+mas "Microsoft OneNote", id: 784801555
 mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft To Do", id: 1274495053
 mas "Microsoft Word", id: 462054704
 mas "OneDrive", id: 823766827

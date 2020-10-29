@@ -105,6 +105,8 @@
 	</dict>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
+	<key>HideTab</key>
+	<false/>
 	<key>HideTabNumber</key>
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
@@ -161,9 +163,9 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>880 726 799 448 -1080 -269 1080 1897 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1280 23 1273 1394 0 0 2560 1417 </string>
+	<string>1280 0 1273 1417 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>343 181 665 484 0 0 2560 1417 </string>
+	<string>1280 965 665 452 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>364 158 665 484 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -273,12 +275,16 @@
 			</dict>
 			<key>Ansi 4 Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.967559814453125</real>
+				<key>Color Space</key>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.0</real>
+				<real>0.39315803788624987</real>
 				<key>Red Component</key>
-				<real>0.0</real>
+				<real>0.27026596013456583</real>
 			</dict>
 			<key>Ansi 5 Color</key>
 			<dict>
@@ -1377,9 +1383,9 @@
 	<key>NoSyncInstallationId</key>
 	<string>284D0E7E-6486-4AAB-A5B4-6935AA0405F6</string>
 	<key>NoSyncLastTipTime</key>
-	<real>623070992.36752701</real>
+	<real>625559588.07836699</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>47</integer>
+	<integer>85</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2132,14 +2138,37 @@
 	<real>622189437.34250295</real>
 	<key>NoSyncTipsToNotShow</key>
 	<array>
-		<string>0003</string>
-		<string>0000</string>
+		<string>0010</string>
+		<string>0026</string>
+		<string>0015</string>
 		<string>0004</string>
+		<string>0009</string>
+		<string>0024</string>
+		<string>0013</string>
+		<string>0002</string>
+		<string>0018</string>
+		<string>0007</string>
+		<string>0022</string>
+		<string>0011</string>
+		<string>0000</string>
+		<string>0027</string>
+		<string>0016</string>
+		<string>0005</string>
+		<string>0020</string>
+		<string>0025</string>
+		<string>0014</string>
+		<string>0003</string>
+		<string>0019</string>
+		<string>0008</string>
+		<string>0023</string>
+		<string>0012</string>
 		<string>0001</string>
 		<string>000</string>
-		<string>0005</string>
-		<string>0002</string>
+		<string>0017</string>
 		<string>0006</string>
+		<string>0028</string>
+		<string>0021</string>
+		<string>0029</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
@@ -2189,11 +2218,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-09-29T11:00:11Z</date>
+	<date>2020-10-29T00:51:42Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
@@ -2204,5 +2233,9 @@
 	<integer>0</integer>
 	<key>iTerm Version</key>
 	<string>3.3.12</string>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>

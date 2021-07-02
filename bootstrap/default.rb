@@ -26,7 +26,7 @@ execute "usermod --shell /bin/zsh #{node['user']}"
 
 execute 'Install diff-so-fancy' do
   user 'root'
-  cwd '/usr/bin'
+  cwd '/usr/local/bin'
   command <<EOS
       curl -OL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/diff-so-fancy &&
       chmod +x diff-so-fancy &&

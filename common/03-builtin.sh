@@ -21,3 +21,19 @@ function cd() {
 function @exist() {
     which "$1" >/dev/null 2>&1
 }
+
+function export-dotenv() {
+    dotenv=${1:-.env}
+    temp1=$(mktemp)
+    temp2=$(mktemp)
+
+    env -i bash --noprofile --norc -c 'declare -p' >"${temp1}"
+    env -i bash --noprofile --norc -c '. "'${dotenv}'" && declare -p' >"${temp2}"
+    exports=$(diff --old-line-format="" --new-line-format="export %L" --unchanged-line-format="" "${temp1}" "${temp2}" |
+        grep -v '^export \(BASH_EXECUTION_STRING\|PIPESTATUS\|_\)=')
+
+    eval "${exports}"
+
+    echo "Read ${dotenv} and exported the following:"
+    echo ${exports}
+}

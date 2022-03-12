@@ -10,7 +10,7 @@ function cd() {
         builtin cd "${@:1:$(($# - 1))}" "$(dirname -- "$LAST")"
     elif [ -d "$LAST" ]; then # redundant?
         builtin cd "$@"
-    elif [ "$#" -ne 0 ] && which wslpath > /dev/null 2>&1; then
+    elif [ "$#" -ne 0 ] && which wslpath >/dev/null 2>&1; then
         builtin cd "$(wslpath "$@")"
     else
         local CDPATH="$__CDPATH"
@@ -19,5 +19,5 @@ function cd() {
 }
 
 function @exist() {
-  which "$1" > /dev/null 2>&1
+    which "$1" >/dev/null 2>&1
 }

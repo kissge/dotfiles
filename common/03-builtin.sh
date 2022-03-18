@@ -37,3 +37,7 @@ function export-dotenv() {
     echo "Read ${dotenv} and exported the following:"
     echo ${exports}
 }
+
+function upp() {
+    command upp | less -RFX
+}

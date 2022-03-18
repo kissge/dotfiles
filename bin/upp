@@ -1,0 +1,46 @@
+#!/usr/bin/env node --expose-internals
+
+const table = require('internal/cli_table');
+const util = require('util');
+
+const keys = ['email', 'd', 'c', 'pr'];
+/** @type string[][] */
+const lines = keys.map(() => []);
+const customClaimsDict = {};
+const customClaimsToID = customClaims => {
+  const str = JSON.stringify(customClaims);
+  if (!customClaimsDict[str]) {
+    customClaimsDict[str] = Object.keys(customClaimsDict).length + 1;
+  }
+  return util.inspect(customClaimsDict[str], { colors: true });
+};
+
+process.stdin.setEncoding('utf8');
+const reader = require('readline').createInterface({ input: process.stdin });
+reader.on('line', line => {
+  const {
+    email,
+    disabled,
+    customClaims,
+    providerData,
+  } = /** @type {import('firebase-admin').auth.ListUsersResult['users'][0]} */ (JSON.parse(line));
+  lines[0].push(String(email));
+  lines[1].push(disabled ? 'D' : '');
+  lines[2].push(customClaimsToID(customClaims));
+  lines[3].push(providerData.map(({ providerId }) => providerId.slice(0, 2)).join(', '));
+});
+reader.on('close', () => {
+  const longestEmailLength = Math.max(...lines[0].map(email => email.length));
+  lines[0] = lines[0].map(email => email.padStart(longestEmailLength));
+
+  console.log(table(keys, lines));
+
+  Object.entries(customClaimsDict)
+    .sort(([, id1], [, id2]) => id1 - id2)
+    .forEach(([str, id]) => {
+      console.log(
+        id,
+        str === 'undefined' ? undefined : util.inspect(JSON.parse(str), { breakLength: Infinity, colors: true }),
+      );
+    });
+});

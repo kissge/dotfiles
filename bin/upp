@@ -3,12 +3,12 @@
 const table = require('internal/cli_table');
 const util = require('util');
 
-const keys = ['email', 'd', 'c', 'pr'];
+const keys = ['email', 'd', 'c', 'pr', 'oldUid'];
 /** @type string[][] */
 const lines = keys.map(() => []);
 const customClaimsDict = {};
-const customClaimsToID = customClaims => {
-  const str = JSON.stringify(customClaims);
+const customClaimsToID = (customClaims) => {
+  const str = JSON.stringify({ ...customClaims, oldUid: undefined });
   if (!customClaimsDict[str]) {
     customClaimsDict[str] = Object.keys(customClaimsDict).length + 1;
   }
@@ -17,21 +17,26 @@ const customClaimsToID = customClaims => {
 
 process.stdin.setEncoding('utf8');
 const reader = require('readline').createInterface({ input: process.stdin });
-reader.on('line', line => {
-  const {
-    email,
-    disabled,
-    customClaims,
-    providerData,
-  } = /** @type {import('firebase-admin').auth.ListUsersResult['users'][0]} */ (JSON.parse(line));
+reader.on('line', (line) => {
+  const { email, disabled, customClaims, providerData } =
+    /** @type {import('firebase-admin').auth.ListUsersResult['users'][0]} */ (JSON.parse(line));
+
   lines[0].push(String(email));
   lines[1].push(disabled ? 'D' : '');
   lines[2].push(customClaimsToID(customClaims));
   lines[3].push(providerData.map(({ providerId }) => providerId.slice(0, 2)).join(', '));
+  lines[4].push(customClaims?.oldUid);
 });
 reader.on('close', () => {
-  const longestEmailLength = Math.max(...lines[0].map(email => email.length));
-  lines[0] = lines[0].map(email => email.padStart(longestEmailLength));
+  const longestEmailLength = Math.max(...lines[0].map((email) => email.length));
+  lines[0] = lines[0].map((email) => email.padStart(longestEmailLength));
+
+  if (lines[4].every((uid) => !uid)) {
+    keys.splice(4, 1);
+    lines.splice(4, 1);
+  } else {
+    lines[4] = lines[4].map((uid) => util.inspect(uid, { colors: true }));
+  }
 
   console.log(table(keys, lines));
 
@@ -40,7 +45,7 @@ reader.on('close', () => {
     .forEach(([str, id]) => {
       console.log(
         id,
-        str === 'undefined' ? undefined : util.inspect(JSON.parse(str), { breakLength: Infinity, colors: true }),
+        str === 'undefined' ? undefined : util.inspect(JSON.parse(str), { breakLength: Infinity, colors: true })
       );
     });
 });

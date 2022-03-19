@@ -1,7 +1,8 @@
 #!/bin/bash
 
-. ${HOME}/.sao/init
+. "${HOME}"/.sao/init
 
+# shellcheck disable=SC2034
 GIT_PROMPT_THEME=Default
 @ "$(brew --prefix)/etc/bash_completion"
 @ /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash

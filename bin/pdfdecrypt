@@ -1,8 +1,10 @@
 #!/bin/sh
 
-while [ "$1" != "" ]
-do
-    [ ! -f "$1" ] && (echo "No such file: $1"; exit -1)
+while [ "$1" != "" ]; do
+    [ ! -f "$1" ] && (
+        echo "No such file: $1"
+        exit 1
+    )
     mv "$1" "$1.bak"
     gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="$1" -c .setpdfwrite -f "$1.bak"
     shift

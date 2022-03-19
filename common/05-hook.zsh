@@ -1,8 +1,10 @@
+# shellcheck shell=bash
+
 # original source: https://superuser.com/a/625663
 function magic-enter() {
     if [ -z "$BUFFER" ]; then
         echo
-        git status 2> /dev/null || ls
+        git status 2>/dev/null || ls
         echo $'\n'
         zle reset-prompt
     else

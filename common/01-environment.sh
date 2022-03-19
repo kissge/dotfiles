@@ -1,3 +1,5 @@
+#!/bin/sh
+
 export PATH="$HOME/.local/bin:$HOME/bin:$SAO_DIR/bin/vendor:$SAO_DIR/bin:$PATH"
 
 export LANG=en_US.UTF-8

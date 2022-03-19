@@ -1,20 +1,21 @@
-# -*- sh -*-
+# shellcheck shell=bash
 
+# shellcheck disable=SC2296
+# (this is zsh syntax and actually also works in bash)
 export SAO_DIR="$(cd "$(dirname "${BASH_SOURCE:-${(%):-%N}}")"; pwd)"
 
 if [ -n "$BASH_VERSION" ]; then
     __BASH=1
     __INITS="$SAO_DIR/common/??-*.{,ba}sh"
-else if [ -n "$ZSH_VERSION" ]; then
-         # http://yo.eki.do/notes/tramp-mode
-         [[ "$TERM" == "dumb" ]] && unsetopt zle && PS1="$ " && return
+elif [ -n "$ZSH_VERSION" ]; then
+    # http://yo.eki.do/notes/tramp-mode
+    [[ "$TERM" == "dumb" ]] && unsetopt zle && PS1="$ " && return
 
-         __ZSH=1
-         __INITS="$SAO_DIR/common/??-*.{,z}sh"
-     else
-         echo "This shell is not supported :("
-         exit 1
-     fi
+    __ZSH=1
+    __INITS="$SAO_DIR/common/??-*.{,z}sh"
+else
+    echo "This shell is not supported :("
+    exit 1
 fi
 
 # Check if the shell is running on WSL
@@ -23,7 +24,7 @@ if [ -f /proc/sys/kernel/osrelease ] && grep -q Microsoft /proc/sys/kernel/osrel
 fi
 
 function init_loader() {
-    for init in $(eval echo $__INITS); do
+    for init in $(eval echo "$__INITS"); do
         . "$init"
     done
 }

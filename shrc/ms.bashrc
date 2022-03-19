@@ -1,8 +1,8 @@
 #!/bin/bash
 
-. ${HOME}/.sao/init
+. "${HOME}"/.sao/init
 
-@ ${SAO_DIR}/common/ubuntu.default.bash || return
+@ "${SAO_DIR}"/common/ubuntu.default.bash || return
 
 # Alt + Left, Alt + Right
 bind '"\e[1;3D": backward-word'

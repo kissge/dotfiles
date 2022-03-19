@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ${HOME}/.line-api-token
+. "${HOME}"/.line-api-token
 SECONDS=0
 bash -c "$*"
 exitcode=$?
@@ -9,4 +9,6 @@ if [ $exitcode -eq 0 ]; then
 else
   result="😢 $exitcode"
 fi
-curl -X POST -H "Authorization: Bearer $TOKEN" -F message="$(sed 's/;/；/g' <<< "$result"$'\n'"$SECONDS s"$'\n'"$*"$'\n'"$(whoami)@$(hostname)")" https://notify-api.line.me/api/notify
+
+message="$result"$'\n'"$SECONDS s"$'\n'"$*"$'\n'"$(whoami)@$(hostname)"
+curl -X POST -H "Authorization: Bearer $TOKEN" -F message="${message//;/；}" https://notify-api.line.me/api/notify

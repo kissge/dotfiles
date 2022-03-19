@@ -1,4 +1,4 @@
 #!/bin/bash
 
-. ${HOME}/.line-api-token
+. "${HOME}"/.line-api-token
 curl -X POST -H "Authorization: Bearer $TOKEN" -F message="$(whoami)@$(hostname)"$'\n'"$(cat)" https://notify-api.line.me/api/notify "$@"

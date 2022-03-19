@@ -26,9 +26,15 @@ function @exist() {
 }
 
 function export-dotenv() {
-    dotenv=${1:-.env}
-    temp1=$(mktemp)
-    temp2=$(mktemp)
+    local dotenv=${1:-.env}
+
+    if [ ! -f "$dotenv" ]; then
+        echo "No such file: $dotenv"
+        return 1
+    fi
+
+    local temp1=$(mktemp)
+    local temp2=$(mktemp)
 
     env -i bash --noprofile --norc -c 'declare -p' >"${temp1}"
     env -i bash --noprofile --norc -c '. "'"${dotenv}"'" && declare -p' >"${temp2}"

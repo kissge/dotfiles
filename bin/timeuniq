@@ -3,9 +3,25 @@
 # Sample usage:
 #     while :; do sleep 1; wc -l test.sh.log; done | timeuniq
 
+source "${SAO_DIR}"/common/03-builtin.sh
+
+if @exist gdate; then
+  DTCOMMAND="gdate"
+else
+  DTCOMMAND="date"
+fi
+
+if [ "$($DTCOMMAND +%N)" = "N" ]; then
+  # No support (maybe BSD version of date?)
+  DTFORMAT='+%Y-%m-%dT%H:%M:%S%z'
+else
+  # Supports nanoseconds `%N`
+  DTFORMAT='+%Y-%m-%dT%H:%M:%S.%N%z'
+fi
+
 while read -r line; do
   if [ "$line" != "$prev" ]; then
-    echo '['"$(date '+%Y-%m-%dT%H:%M:%S.%N%:z')"']' "$line"
+    echo '['"$($DTCOMMAND $DTFORMAT)"']' "$line"
     prev="$line"
   fi
 done

@@ -6,4 +6,7 @@ function oh-my-zsh() {
 
     # see 03-builtin.sh
     unalias md
+
+    # overwriting aliases
+    source "${SAO_DIR}"/common/02-alias.zsh
 }

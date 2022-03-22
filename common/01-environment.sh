@@ -20,4 +20,8 @@ export LC_ALL="$LANG"
 
 export LESS='-RFX'
 
+# n (https://github.com/tj/n)
+export N_PREFIX="$HOME"/.n
+export PATH="$N_PREFIX"/bin:"$PATH"
+
 __CDPATH=".:$HOME"

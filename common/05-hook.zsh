@@ -4,7 +4,7 @@
 function magic-enter() {
     if [ -z "$BUFFER" ]; then
         echo
-        git status 2>/dev/null || ls
+        git status 2>/dev/null || eval "$(whence ls)"
         echo $'\n'
         zle reset-prompt
     else

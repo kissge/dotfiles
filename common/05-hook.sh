@@ -34,8 +34,10 @@ if [ ! "$EMACS" ] && [ -d "$_DOWNLOADS" ]; then
     unset OLDERFILES
 
     clean_older_files() {
-        cd "$_DOWNLOADS"
-        eval "$_FIND_COMMAND" -exec rm -rfv {} \+ | command less -RFX
+        (
+            cd "$_DOWNLOADS"
+            eval "$_FIND_COMMAND" -exec rm -rfv {} \+ | command less -RFX
+        )
     }
 fi
 

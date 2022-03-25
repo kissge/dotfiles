@@ -10,7 +10,6 @@ brew "coreutils"
 brew "csvkit"
 brew "docker-compose", link: false
 brew "ffmpeg"
-brew "firebase-cli"
 brew "ghostscript"
 brew "git"
 brew "pango"

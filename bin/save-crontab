@@ -1,0 +1,3 @@
+#!/bin/bash
+
+crontab -l >"${HOME}/Dropbox/Settings/$(hostname-filename-safe).crontab"

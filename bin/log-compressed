@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Usage:
+#   curl -s http://some/api | log-compressed --skip-if-empty history.complog.tsv
+# Note:
+#   Input is expected to be a single line. Second or later lines are silently ignored.
+
+source "${SAO_DIR}"/common/03-builtin.sh
+
+if @exist gdate; then
+    DTCOMMAND="gdate"
+else
+    DTCOMMAND="date"
+fi
+
+if [ "$($DTCOMMAND +%N)" = "N" ]; then
+    # No support (maybe BSD version of date?)
+    DTFORMAT='+%Y-%m-%dT%H:%M:%S%z'
+else
+    # Supports nanoseconds `%N`
+    DTFORMAT='+%Y-%m-%dT%H:%M:%S.%N%z'
+fi
+
+new_value=$(head -n 1)
+
+if [ "$1" = '--skip-if-empty' ]; then
+    if [ -z "$new_value" ]; then
+        exit
+    fi
+    shift
+fi
+
+log_file=$1
+
+last_line=$(tail -n 1 "$log_file" 2>/dev/null)
+now=$("$DTCOMMAND" "$DTFORMAT")
+tab=$'\t'
+
+if [ -n "$last_line" ]; then
+    last_value=$(cut <<<"$last_line" -d "$tab" -f 3-)
+    if [ "$last_value" = "$new_value" ]; then
+        last_time=$(cut <<<"$last_line" -d "$tab" -f 1)
+        tmp=$(mktemp)
+        (
+            sed '$ d' "$log_file"
+            echo "$last_time$tab$now$tab$last_value"
+        ) >"$tmp"
+        cat "$tmp" >"$log_file"
+        rm "$tmp"
+        exit
+    fi
+fi
+
+echo "$now$tab$now$tab$new_value" >>"$log_file"

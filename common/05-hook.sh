@@ -6,10 +6,10 @@ if [ ! "$EMACS" ] && [ -d "$_DOWNLOADS" ]; then
     # shellcheck disable=SC2185
     if find -atime +1d 2>/dev/null; then
         # GNU
-        _FIND_COMMAND='find * .* -maxdepth 0 -atime +3d'
+        _FIND_COMMAND='find . -mindepth 1 -maxdepth 1 -atime +3d'
     else
         # BSD
-        _FIND_COMMAND='find * .* -maxdepth 0 -atime 3'
+        _FIND_COMMAND='find . -mindepth 1 -maxdepth 1 -atime 3'
     fi
 
     if command ls --color >/dev/null 2>&1; then

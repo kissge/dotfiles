@@ -1,6 +1,6 @@
 #!/bin/bash
 
-result=$(hostname 2>/dev/null | sed -e 's/[\\/:*?"<>| ]/\_/g')
+result=$(uname -n 2>/dev/null | sed -e 's/[\\/:*?"<>| ]/\_/g')
 if [ -z "$result" ]; then
     echo "${1:-unknown}"
 else

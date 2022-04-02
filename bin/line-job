@@ -10,5 +10,5 @@ else
   result="😢 $exitcode"
 fi
 
-message="$result"$'\n'"$SECONDS s"$'\n'"$*"$'\n'"$(whoami)@$(hostname)"
+message="$result"$'\n'"$SECONDS s"$'\n'"$*"$'\n'"$(whoami)@$(uname -n)"
 curl -X POST -H "Authorization: Bearer $TOKEN" -F message="${message//;/；}" https://notify-api.line.me/api/notify

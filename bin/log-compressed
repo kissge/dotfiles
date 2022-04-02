@@ -5,8 +5,6 @@
 # Note:
 #   Input is expected to be a single line. Second or later lines are silently ignored.
 
-source "${SAO_DIR}"/common/03-builtin.sh
-
 if @exist gdate; then
     DTCOMMAND="gdate"
 else

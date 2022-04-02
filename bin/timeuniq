@@ -3,8 +3,6 @@
 # Sample usage:
 #     while :; do sleep 1; wc -l test.sh.log; done | timeuniq
 
-source "${SAO_DIR}"/common/03-builtin.sh
-
 if @exist gdate; then
   DTCOMMAND="gdate"
 else

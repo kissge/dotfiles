@@ -1,4 +1,25 @@
 #!/bin/bash
 
+# Usage:
+#     echo something | line-me
+# Known issue:
+#     Long input will be split by length, which is done in a byte-wise manner.
+
+set -Eeuo pipefail
+
 . "${HOME}"/.line-api-token
-curl -X POST -H "Authorization: Bearer $TOKEN" -F message="$(whoami)@$(uname -n)"$'\n'"$(cat)" https://notify-api.line.me/api/notify "$@"
+
+[ "${1:-}" = "--no-header" ] && shift || header="$(whoami)"@"$(uname -n)"
+
+option=(-H "Authorization: Bearer $TOKEN")
+if curl --fail-with-body -V >/dev/null 2>&1; then
+    option+=(--fail-with-body --silent)
+fi
+
+(
+    [[ -n "${header:-}" ]] && echo "$header"
+    perl -pe 'chomp if eof'
+    printf "\0"
+) | while IFS= read -r -d "" -n "${SPLIT:-950}" chunk; do
+    curl "${option[@]}" --data-urlencode message="$chunk" https://notify-api.line.me/api/notify "$@"
+done

@@ -1,14 +1,23 @@
 #!/bin/bash
 
+set -euo pipefail
+
 . "${HOME}"/.line-api-token
+
+out=$(mktemp -t line-job.stdout)
+err=$(mktemp -t line-job.stderr)
+
+set +e
 SECONDS=0
-bash -c "$*"
+bash -c "$*" >"$out" 2>"$err"
 exitcode=$?
+set -e
 if [ $exitcode -eq 0 ]; then
   result=👌
 else
-  result="😢 $exitcode"
+  result="😢 [$exitcode]"
 fi
 
-message="$result"$'\n'"$SECONDS s"$'\n'"$*"$'\n'"$(whoami)@$(uname -n)"
-curl -X POST -H "Authorization: Bearer $TOKEN" -F message="${message//;/；}" https://notify-api.line.me/api/notify
+line-me <<<"$result $SECONDS s"$'\n'"$*"
+[ -s "$out" ] && line-me --no-header <<<$'stdout:\n'"$(cat "$out")"
+[ -s "$err" ] && line-me --no-header <<<$'stderr:\n'"$(cat "$err")"

@@ -4,8 +4,8 @@ set -euo pipefail
 
 . "${HOME}"/.line-api-token
 
-out=$(mktemp -t line-job.stdout)
-err=$(mktemp -t line-job.stderr)
+out=$(mktemp -t line-job.stdout.XXX)
+err=$(mktemp -t line-job.stderr.XXX)
 
 set +e
 SECONDS=0

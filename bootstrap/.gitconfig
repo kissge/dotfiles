@@ -27,6 +27,12 @@
         bye = !git branch --merged | grep -vF '*' | xargs -r git branch -d
         remove-untracked = !git ls-files -zo --exclude-standard | xargs -0 rm -v
         tree = !git ls-tree -r --name-only HEAD | tree --fromfile -N
+        show-default-branch = !{ \
+                                 git symbolic-ref --short refs/remotes/origin/HEAD | cut -d/ -f2- ";" \
+                                 git branch -l main ";" \
+                                 git branch -l master ";" \
+                               } 2> /dev/null | head -n 1
+        ready = !git switch \"$(git show-default-branch)\" && git pull && git bye
 [diff]
         algorithm = patience
         indentHeuristic = true

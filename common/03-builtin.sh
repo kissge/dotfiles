@@ -21,10 +21,6 @@ function cd() {
     fi
 }
 
-function @exist() {
-    which "$1" >/dev/null 2>&1
-}
-
 function export-dotenv() {
     local dotenv=${1:-.env}
 

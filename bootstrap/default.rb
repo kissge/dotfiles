@@ -25,9 +25,10 @@ end
 execute "usermod --shell /bin/zsh #{node['user']}"
 
 execute 'Install diff-so-fancy' do
-  user 'root'
-  cwd '/usr/local/bin'
+  user node['user']
   command <<EOS
+      mkdir -p ~/.local/bin &&
+      cd ~/.local/bin &&
       curl -OL https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/diff-so-fancy &&
       chmod +x diff-so-fancy &&
       mkdir -p lib &&

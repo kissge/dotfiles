@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     ansi (1.5.0)
+    bcrypt_pbkdf (1.1.0)
+    ffi (1.15.5)
     hashie (3.5.7)
     itamae (1.9.11)
       ansi
@@ -13,6 +15,8 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
     net-telnet (0.1.1)
+    rbnacl (4.0.2)
+      ffi
     schash (0.1.2)
     sfl (2.3)
     specinfra (2.73.2)
@@ -26,7 +30,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt_pbkdf (< 2.0)
   itamae
+  rbnacl (< 5.0)
 
 BUNDLED WITH
    2.0.2

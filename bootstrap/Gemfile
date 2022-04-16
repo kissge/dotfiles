@@ -1,3 +1,7 @@
 source "https://rubygems.org"
 
 gem "itamae"
+
+# for ed25519
+gem "rbnacl", "< 5.0"
+gem "bcrypt_pbkdf", "< 2.0"

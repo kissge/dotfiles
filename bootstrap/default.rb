@@ -38,14 +38,14 @@ EOS
   not_if 'which diff-so-fancy'
 end
 
-remote_file "/home/#{node['user']}/.gitconfig" do
-  source '.gitconfig'
-  owner node['user']
-  not_if "test -f /home/#{node['user']}/.gitconfig"
+execute 'Link .gitconfig' do
+  user node['user']
+  command 'ln -s ~/.sao/bootstrap/.gitconfig ~/'
+  not_if 'test -f ~/.gitconfig'
 end
 
-remote_file "/home/#{node['user']}/.tmux.conf" do
-  source '.tmux.conf'
-  owner node['user']
-  not_if "test -f /home/#{node['user']}/.tmux.conf"
+execute 'Link .tmux.conf' do
+  user node['user']
+  command 'ln -s ~/.sao/bootstrap/.tmux.conf ~/'
+  not_if 'test -f ~/.tmux.conf'
 end

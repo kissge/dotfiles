@@ -33,6 +33,7 @@
                                  git branch -l master ";" \
                                } 2> /dev/null | head -n 1
         ready = !git switch \"$(git show-default-branch)\" && git pull && git bye
+        exec = '!exec '
 [diff]
         algorithm = patience
         indentHeuristic = true

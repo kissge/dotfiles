@@ -5,6 +5,19 @@ function md() {
 }
 
 function cd() {
+    if [ $# -eq 0 ]; then
+        local git_root
+        if git_root=$(git rev-parse --show-toplevel 2>/dev/null); then
+            if [ "$git_root" != "$PWD" ]; then
+                builtin cd "$git_root"
+                return
+            fi
+        fi
+
+        builtin cd
+        return
+    fi
+
     # Get last argument
     local LAST
     for LAST; do :; done

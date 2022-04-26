@@ -1,11 +1,14 @@
 #!/usr/bin/env node --expose-internals
 
+// @ts-check
+
+// @ts-expect-error
 const table = require('internal/cli_table');
 const util = require('util');
 
-const keys = ['uid', 'email', 'd', 'c', 'pr', 'oldUid'];
-/** @type string[][] */
-const lines = keys.map(() => []);
+const keys = [.../** @type {const} */ (['uid', 'email', 'd', 'c', 'p', 'oldUid'])];
+/** @type {Record<typeof keys[number], string>[]} */
+const rows = [];
 const customClaimsDict = {};
 const customClaimsToID = (customClaims) => {
   if (!customClaims) {
@@ -26,33 +29,32 @@ reader.on('line', (line) => {
   const { uid, email, disabled, customClaims, providerData } =
     /** @type {import('firebase-admin').auth.ListUsersResult['users'][0]} */ (JSON.parse(line));
 
-  lines[0].push(uid);
-  lines[1].push(String(email));
-  lines[2].push(disabled ? 'D' : '');
-  lines[3].push(customClaimsToID(customClaims));
-  lines[4].push(providerData.map(({ providerId }) => providerId.slice(0, 2)).join(', '));
-  lines[5].push(customClaims?.oldUid);
+  rows.push({
+    uid,
+    email: String(email),
+    d: disabled ? 'Dis' : '',
+    c: customClaimsToID(customClaims),
+    p: providerData.map(({ providerId }) => providerId.charAt(0).toUpperCase()).join(', '),
+    oldUid: customClaims?.oldUid,
+  });
 });
-reader.on('close', () => {
-  const longestEmailLength = Math.max(...lines[1].map((email) => email.length));
-  lines[1] = lines[1].map((email) => email.padStart(longestEmailLength));
 
-  if (lines[5].every((uid) => !uid)) {
+reader.on('close', () => {
+  const longestEmailLength = Math.max(...rows.map(({ email }) => email.length));
+  rows.forEach((row) => (row.email = row.email.padStart(longestEmailLength)));
+
+  if (rows.every(({ oldUid }) => !oldUid)) {
     keys.splice(5, 1);
-    lines.splice(5, 1);
   } else {
-    lines[5] = lines[5].map((uid) => util.inspect(uid, { colors: true }));
+    rows.forEach((row) => (row.oldUid = util.inspect(row.oldUid, { colors: true })));
   }
 
-  console.log(table(keys, lines));
+  console.log(
+    table(
+      keys.map((key) => key + '(' + new Set(rows.map((row) => row[key])).size + ')'),
+      keys.map((key) => rows.map((row) => row[key]))
+    )
+  );
 
-  Object.entries(customClaimsDict)
-    .sort(([, id1], [, id2]) => id1.localeCompare(id2))
-    .forEach(([str, id]) => {
-      console.log(
-        id +
-          '\t' +
-          (str === 'undefined' ? undefined : util.inspect(JSON.parse(str), { breakLength: Infinity, colors: true }))
-      );
-    });
+  console.table(Object.fromEntries(Object.entries(customClaimsDict).map(([str, id]) => [id, JSON.parse(str)])));
 });

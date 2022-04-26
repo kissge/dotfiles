@@ -8,11 +8,16 @@ const keys = ['uid', 'email', 'd', 'c', 'pr', 'oldUid'];
 const lines = keys.map(() => []);
 const customClaimsDict = {};
 const customClaimsToID = (customClaims) => {
+  if (!customClaims) {
+    return String(customClaims);
+  }
+
   const str = JSON.stringify({ ...customClaims, oldUid: undefined });
   if (!customClaimsDict[str]) {
-    customClaimsDict[str] = Object.keys(customClaimsDict).length + 1;
+    const expired = customClaims.expiresAfter && new Date() > new Date(customClaims.expiresAfter);
+    customClaimsDict[str] = Object.keys(customClaimsDict).length + 1 + (expired ? 'X' : '');
   }
-  return util.inspect(customClaimsDict[str], { colors: true });
+  return customClaimsDict[str];
 };
 
 process.stdin.setEncoding('utf8');
@@ -42,11 +47,12 @@ reader.on('close', () => {
   console.log(table(keys, lines));
 
   Object.entries(customClaimsDict)
-    .sort(([, id1], [, id2]) => id1 - id2)
+    .sort(([, id1], [, id2]) => id1.localeCompare(id2))
     .forEach(([str, id]) => {
       console.log(
-        id,
-        str === 'undefined' ? undefined : util.inspect(JSON.parse(str), { breakLength: Infinity, colors: true })
+        id +
+          '\t' +
+          (str === 'undefined' ? undefined : util.inspect(JSON.parse(str), { breakLength: Infinity, colors: true }))
       );
     });
 });

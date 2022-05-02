@@ -35,6 +35,7 @@
         ready = !git switch \"$(git show-default-branch)\" && git pull && git bye
 	exec = "!exec "
         toriaezu = !git stash store -m \"toriaezu $(git rev-parse --short HEAD) $(date)\" $(git stash create) && echo Saved. Current git stash list: && git stash list
+        empty = commit --allow-empty --allow-empty-message -m ''
 [diff]
         algorithm = patience
         indentHeuristic = true

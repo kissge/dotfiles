@@ -5,7 +5,7 @@ HISTSIZE=2147483647
 SAVEHIST=2147483647
 
 if [ -d "${HOME}/Dropbox/Settings" ]; then
-    HISTFILE="${HOME}/Dropbox/Settings/$(hostname-filename-safe).zsh-history"
+    HISTFILE="${HOME}/Dropbox/Settings/$(hostname-filename-safe)/zsh-history"
 
     if [ -f "${HOME}/.zsh_history" ]; then
         echo

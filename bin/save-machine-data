@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR="$HOME/Dropbox/Settings/$(hostname-filename-safe)"
+
+crontab -l >"$DIR/crontab"
+sleep 300
+last >"$DIR/lastlog"

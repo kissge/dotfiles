@@ -4,8 +4,14 @@ HISTSIZE=2147483647
 # shellcheck disable=SC2034
 SAVEHIST=2147483647
 
-if [ -d "${HOME}/Dropbox/Settings" ]; then
-    HISTFILE="${HOME}/Dropbox/Settings/$(hostname-filename-safe)/zsh-history"
+DIR="$HOME/Dropbox/Settings"
+
+if [ -d "$DIR" ]; then
+    DIR="$DIR/$(hostname-filename-safe)"
+    if [ ! -d "$DIR" ]; then
+        mkdir -p "$DIR"
+    fi
+    HISTFILE="$DIR/zsh-history"
 
     if [ -f "${HOME}/.zsh_history" ]; then
         echo

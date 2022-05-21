@@ -1,0 +1,39 @@
+#!/usr/bin/perl
+
+# Example:
+#     ( echo 700 >&3; for i in $(seq 1 700); do sleep 0.05; echo $i >&3; done ) 3> >(progress)
+
+my $total = <>;
+my $start = time;
+$| = 1;
+
+sub hms {
+    my $t = shift;
+    my $h = int($t / 3600);
+    my $m = int(($t % 3600) / 60);
+    my $s = $t % 60;
+    return sprintf('%02d:%02d:%02d', $h, $m, $s);
+}
+
+while (<>) {
+    if ($total > 0) {
+        my $percent = 100 * $_ / $total;
+
+        my $elapsed = time - $start;
+        my $elapsed_str = hms($elapsed);
+        my $eta = (0 < $_ && $_ <= $total) ? hms($elapsed * ($total - $_) / $_) : '??:??:??';
+
+        my $cols = `tput cols` - 40;
+        if ($cols > 200) {
+            $cols = 200;
+        }
+        my $bar = $_ > $total ? $cols : int($cols * $_ / $total);
+        my $bar_str = "=" x $bar . " " x ($cols - $bar);
+
+        printf("\r%6.2f%% %s (%s) [%s]", $percent, $elapsed_str, $eta, $bar_str);
+    }
+}
+
+if ($total > 0) {
+    print "\n";
+}

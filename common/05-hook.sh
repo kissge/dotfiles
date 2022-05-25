@@ -3,10 +3,9 @@
 _DOWNLOADS="${HOME}/Downloads"
 
 if [ ! "$EMACS" ] && [ -d "$_DOWNLOADS" ]; then
-    # shellcheck disable=SC2185
-    if find -atime +1d 2>/dev/null; then
+    if find / -maxdepth 0 -atime +1 >/dev/null 2>&1; then
         # GNU
-        _FIND_COMMAND='find . -mindepth 1 -maxdepth 1 -atime +3d'
+        _FIND_COMMAND='find . -mindepth 1 -maxdepth 1 -atime +3'
     else
         # BSD
         _FIND_COMMAND='find . -mindepth 1 -maxdepth 1 -atime 3'

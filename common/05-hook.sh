@@ -3,14 +3,6 @@
 _DOWNLOADS="${HOME}/Downloads"
 
 if [ ! "$EMACS" ] && [ -d "$_DOWNLOADS" ]; then
-    if find / -maxdepth 0 -atime +1 >/dev/null 2>&1; then
-        # GNU
-        _FIND_COMMAND='find . -mindepth 1 -maxdepth 1 -atime +3'
-    else
-        # BSD
-        _FIND_COMMAND='find . -mindepth 1 -maxdepth 1 -atime 3'
-    fi
-
     if command ls --color >/dev/null 2>&1; then
         # GNU
         _LS_COMMAND='ls --color=always'
@@ -21,7 +13,7 @@ if [ ! "$EMACS" ] && [ -d "$_DOWNLOADS" ]; then
 
     OLDERFILES=$(
         cd "$_DOWNLOADS"
-        eval "$_FIND_COMMAND" -exec "$_LS_COMMAND" -tdluh {} \+
+        find . -mindepth 1 -maxdepth 1 -atime +3 -exec "$_LS_COMMAND" -tdluh {} \+
     )
 
     if [ -n "$OLDERFILES" ]; then
@@ -35,7 +27,7 @@ if [ ! "$EMACS" ] && [ -d "$_DOWNLOADS" ]; then
     clean_older_files() {
         (
             cd "$_DOWNLOADS"
-            eval "$_FIND_COMMAND" -exec rm -rfv {} \+ | command less -RFX
+            find . -mindepth 1 -maxdepth 1 -atime +3 -exec rm -rfv {} \+ | command less -RFX
         )
     }
 fi

@@ -1,4 +1,4 @@
-#!/usr/bin/env node --expose-internals
+#!/usr/bin/env -S node --expose-internals
 
 // @ts-check
 

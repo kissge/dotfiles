@@ -3,18 +3,16 @@
 _DOWNLOADS="${HOME}/Downloads"
 
 if [ ! "$EMACS" ] && [ -d "$_DOWNLOADS" ]; then
-    if command ls --color >/dev/null 2>&1; then
-        # GNU
-        _LS_COMMAND='ls --color=always'
-    else
-        # BSD
-        _LS_COMMAND='env CLICOLOR=1 CLICOLOR_FORCE=1 ls'
-    fi
-
     OLDERFILES=$(
         cd "$_DOWNLOADS"
-        find . -mindepth 1 -maxdepth 1 -atime +3 -exec "$_LS_COMMAND" -tdluh {} \+
+
+        if command ls --color >/dev/null 2>&1; then
+            find . -mindepth 1 -maxdepth 1 -atime +3 -exec ls --color=always -tdluh {} \+
+        else
+            find . -mindepth 1 -maxdepth 1 -atime +3 -exec env CLICOLOR=1 CLICOLOR_FORCE=1 ls -tdluh {} \+
+        fi
     )
+    # 'if' above = GNU or BSD check (why can't I write comment inside $()?)
 
     if [ -n "$OLDERFILES" ]; then
         echo 'These file(s) have not been accessed for more than three days:' >&2

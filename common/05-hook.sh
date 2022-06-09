@@ -6,7 +6,9 @@ if [ ! "$EMACS" ] && [ -d "$_DOWNLOADS" ]; then
     OLDERFILES=$(
         cd "$_DOWNLOADS"
 
-        if command ls --color >/dev/null 2>&1; then
+        if powershell.exe -h >/dev/null 2>&1; then
+            powershell.exe -Command 'Get-ChildItem | ? { $_.LastAccessTime -lt (Get-Date).AddDays(-3) }'
+        elif command ls --color >/dev/null 2>&1; then
             find . -mindepth 1 -maxdepth 1 -atime +3 -exec ls --color=always -tdluh {} \+
         else
             find . -mindepth 1 -maxdepth 1 -atime +3 -exec env CLICOLOR=1 CLICOLOR_FORCE=1 ls -tdluh {} \+
@@ -25,7 +27,13 @@ if [ ! "$EMACS" ] && [ -d "$_DOWNLOADS" ]; then
     clean_older_files() {
         (
             cd "$_DOWNLOADS"
-            find . -mindepth 1 -maxdepth 1 -atime +3 -exec rm -rfv {} \+ | command less -RFX
+            if powershell.exe -h >/dev/null 2>&1; then
+                powershell.exe -Command 'Get-ChildItem |
+                    ? { $_.LastAccessTime -lt (Get-Date).AddDays(-3) } |
+                    Remove-Item -Recurse -Verbose'
+            else
+                find . -mindepth 1 -maxdepth 1 -atime +3 -exec rm -rfv {} \+ | command less -RFX
+            fi
         )
     }
 fi

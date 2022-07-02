@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Usage example:
+#     target_window_title='yk@uzuki2:/tmp/test'
+#     . /path/to/iterm-auto
+#     bring_to_front
+#     write '"ZSH_AUTOSUGGEST_STRATEGY=(); clear"'
+#     sleep 1s
+#     type 'echo hello'
+
+function bring_to_front() {
+  osascript -e 'activate application "iTerm2"'
+}
+
+function write() {
+  osascript <<EOS
+    tell application "iTerm2"
+      tell 1st window whose name is "$target_window_title"
+        tell 1st tab
+          tell 1st session
+            write text $1
+          end tell
+        end tell
+      end tell
+    end tell
+EOS
+}
+
+function type() {
+  word="$1"
+  wait_end=${2:-1s}
+  wait_line=${3:-0.5s}
+  wait_char=${4:-0.03s}
+
+  for ((i = 0; i < ${#word}; i++)); do
+    write '"'"${word:$i:1}"'" newline NO' &
+    sleep "$wait_char"
+  done
+
+  sleep "$wait_line"
+
+  write '""'
+  sleep "$wait_end"
+}

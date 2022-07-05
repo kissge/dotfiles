@@ -17,8 +17,7 @@
         canoe = commit --amend --no-edit
         dc = diff --cached
         l = log --branches --graph
-        lm = log --graph master^...
-        ld = log --graph develop^...
+        lc = !git log \"$(git show-parent-branch)\"...
         cf = commit --fixup
         rf = rebase --interactive --autosquash
         rfa = rebase --interactive --autosquash --autostash
@@ -32,6 +31,9 @@
                                  git branch -l main ";" \
                                  git branch -l master ";" \
                                } 2> /dev/null | sed -n '"1s/^[* ]*//;1p"'
+        show-current-branch = rev-parse --abbrev-ref HEAD
+        show-parent-branch = !git show-branch | cut -d']' -f1 | grep -F '*' | grep -vF \"$(git show-current-branch)\" | \
+                                head -n1 | cut -d'[' -f2-
         ready = !git switch \"$(git show-default-branch)\" && git pull && git bye
         exec = "!exec "
         toriaezu = !git stash store -m \"toriaezu $(git rev-parse --short HEAD) $(date)\" $(git stash create) && echo Saved. Current git stash list: && git stash list

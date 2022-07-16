@@ -1,0 +1,8 @@
+zmodule input
+zmodule utility
+
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-autosuggestions
+
+# Put this to the last.
+zmodule completion

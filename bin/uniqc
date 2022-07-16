@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# equivalent of 'uniq -c', with no sorting needed
-
-awk '{counter[$0]++} END {for (i in counter) print counter[i] "	" i}'

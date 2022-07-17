@@ -1,6 +1,9 @@
 # Make cd push the old directory to the directory stack.
 setopt AUTO_PUSHD
 
+# Save each command’s beginning timestamp (in seconds since the epoch) and the duration (in seconds) to the history file.
+setopt EXTENDED_HISTORY
+
 # Allow comments starting with `#` in the interactive shell.
 setopt INTERACTIVE_COMMENTS
 

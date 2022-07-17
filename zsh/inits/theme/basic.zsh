@@ -24,22 +24,38 @@ function __prompt_pwd_and_git() {
     echo -n '%K{blue}'
     # space
     echo -n ' '
-    # <bold>
-    echo -n '%B'
-    # current directory (long)
-    echo -n '%0~'
-    # </bold>
-    echo -n '%b'
 
-    local branch
+    # current directory
+    local git_root
+    if git_root=$(git rev-parse --show-toplevel 2>/dev/null); then
+        # <bold>
+        echo -n '%B'
+        # current directory, down to git root
+        echo -n "${git_root/#$HOME/~}"
+        # </bold>
+        echo -n '%b'
+        # <foreground grey>
+        echo -n '%F{247}'
+        # current directory, rest of
+        echo -n "${PWD##$git_root}"
+        # </foreground>
+        echo -n '%f'
 
-    if branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); then
         # <foreground lightblue>
         echo -n '%F{69}'
         # git branch
+        branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || branch='n/a'
         echo -n ": %{$branch%}"
         # </foreground>
         echo -n '%f'
+    else
+        # not inside a git repo
+        # <bold>
+        echo -n '%B'
+        # current directory
+        echo -n '%0~'
+        # </bold>
+        echo -n '%b'
     fi
 
     # space

@@ -13,7 +13,7 @@ setopt SHARE_HISTORY
 # Modified from https://memo.sugyan.com/entry/20100712/1278869962
 autoload -Uz select-word-style
 select-word-style default
-zstyle ':zle:*' word-chars ' _-,./:;@(){}[]'
+zstyle ':zle:*' word-chars ' /\()"-.,:;<>~!@#$%^&*|+=[]{}~?│'"'"
 zstyle ':zle:*' word-style unspecified
 
 # By default zsh removes whitespace after the completion when typing a certain character like ';'.

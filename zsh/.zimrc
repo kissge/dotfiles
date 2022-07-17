@@ -1,4 +1,5 @@
 zmodule input
+zmodule termtitle
 zmodule utility
 
 zmodule z-shell/H-S-MW

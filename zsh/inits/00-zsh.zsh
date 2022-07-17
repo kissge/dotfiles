@@ -7,6 +7,9 @@ setopt INTERACTIVE_COMMENTS
 # The prompt string is first subjected to parameter expansion, command substitution and arithmetic expansion.
 setopt PROMPT_SUBST
 
+# This option both imports new commands from the history file, and also causes your typed commands to be appended to the history file.
+setopt SHARE_HISTORY
+
 # Modified from https://memo.sugyan.com/entry/20100712/1278869962
 autoload -Uz select-word-style
 select-word-style default

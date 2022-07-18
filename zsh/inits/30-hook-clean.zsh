@@ -6,7 +6,7 @@
     local old_files=$(
         cd ~/Downloads
 
-        if powershell.exe -h >/dev/null 2>&1; then
+        if (( ${+commands[powershell.exe]} )); then
             # WSL
             powershell.exe -Command 'Get-ChildItem | ? { $_.LastAccessTime -lt (Get-Date).AddDays(-3) }'
         elif command ls --color >/dev/null 2>&1; then
@@ -28,7 +28,7 @@
         (
             cd ~/Downloads
 
-            if powershell.exe -h >/dev/null 2>&1; then
+            if (( ${+commands[powershell.exe]} )); then
                 powershell.exe -Command 'Get-ChildItem |
                     ? { $_.LastAccessTime -lt (Get-Date).AddDays(-3) } |
                     Remove-Item -Recurse -Verbose'

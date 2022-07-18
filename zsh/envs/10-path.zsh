@@ -6,3 +6,4 @@ function add_path() {
 
 add_path "$HOME"/.config/bin
 add_path "$HOME"/.config/bin/vendor
+add_path "$HOME"/.local/bin

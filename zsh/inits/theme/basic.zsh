@@ -5,14 +5,10 @@ function __prompt_time() {
     echo -n '%F{white}#%f'
     # <foreground black>
     echo -n '%F{16}'
-    # <bold>
-    echo -n '%B'
     # HH:MM:SSTTT
     echo -n '%D{%T%Z}'
     # space
     echo -n ' '
-    # </bold>
-    echo -n '%b'
     # </foreground>
     echo -n '%f'
     # </background>

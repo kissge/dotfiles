@@ -31,7 +31,7 @@ function __prompt_pwd_and_git() {
         # </bold>
         echo -n '%b'
         # <foreground grey>
-        echo -n '%F{247}'
+        echo -n '%F{223}'
         # current directory, rest of
         echo -n "${PWD##$git_root}"
         # </foreground>

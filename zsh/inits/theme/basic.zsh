@@ -38,7 +38,7 @@ function __prompt_pwd_and_git() {
         echo -n '%f'
 
         # <foreground lightblue>
-        echo -n '%F{69}'
+        echo -n '%F{87}'
         # git branch
         branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null) || branch='n/a'
         echo -n ": %{$branch%}"

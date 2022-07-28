@@ -5,6 +5,7 @@ zmodule utility
 zmodule z-shell/F-Sy-H
 zmodule z-shell/H-S-MW
 zmodule zsh-users/zsh-autosuggestions
+zmodule zsh-users/zsh-completions
 
 # Put this to the last.
 zmodule completion

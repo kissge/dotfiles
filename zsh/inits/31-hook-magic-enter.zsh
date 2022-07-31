@@ -2,7 +2,7 @@ function magic-enter() {
     if [[ -z $BUFFER && $CONTEXT == "start" ]]; then
         echo
         git status 2>/dev/null || ls
-        echo
+        echo $'\n'
         zle reset-prompt
     else
         zle accept-line

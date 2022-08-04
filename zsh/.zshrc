@@ -11,3 +11,4 @@ source "$ZDOTDIR"/inits/31-hook-magic-enter.zsh
 source "$ZDOTDIR"/inits/32-hook-timer.zsh
 source "$ZDOTDIR"/inits/40-theme.zsh
 source "$ZDOTDIR"/inits/50-history.zsh
+source "$ZDOTDIR"/inits/60-completion.zsh

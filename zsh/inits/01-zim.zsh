@@ -17,5 +17,8 @@ if [[ ! "${ZIM_HOME}"/init.zsh -nt "${ZDOTDIR:-${HOME}}"/.zimrc ]]; then
   source "${ZIM_HOME}"/zimfw.zsh init -q
 fi
 
+FZF_PREVIEW='sed -e "s/^ *[0-9]*  //; s/\\\\n/\n/g" <<< {} | bat --plain --color=always --language=zsh'
+FZF_PREVIEW_WINDOW=':wrap'
+
 # Initialize modules.
 source "${ZIM_HOME}"/init.zsh

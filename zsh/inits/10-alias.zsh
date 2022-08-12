@@ -15,6 +15,7 @@ alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gpf!='git push --force'
 alias gd='git diff'
+alias gdc='git diff --cached'
 
 if (( ${+commands[ggrep]} )); then
   alias grep='ggrep --color=auto'

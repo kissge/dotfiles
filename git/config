@@ -35,6 +35,7 @@
         show-parent-branch = !git show-branch | cut -d']' -f1 | grep -F '*' | grep -vF \"$(git show-current-branch)\" | \
                                 head -n1 | sed -e 's/^.*\\[//' | sed -e 's/[~^].*//'
         ready = !git switch \"$(git show-default-branch)\" && git pull && git bye
+        code = "!code ."
         exec = "!exec "
         toriaezu = !git stash store -m \"toriaezu $(git rev-parse --short HEAD) $(date)\" $(git stash create) && echo Saved. Current git stash list: && git stash list
         empty = commit --allow-empty --allow-empty-message -m ''

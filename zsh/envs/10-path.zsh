@@ -4,6 +4,16 @@ function add_path() {
     fi
 }
 
+function deprioritize_fpath() {
+    fpath=( ${fpath[@]:#"$1"} "$1" )
+}
+
 add_path "$HOME"/.config/bin
 add_path "$HOME"/.config/bin/vendor
 add_path "$HOME"/.local/bin
+
+add_path /usr/local/bin
+
+if (( ${+commands[brew]} )); then
+    deprioritize_fpath $(brew --prefix)/share/zsh/site-functions
+fi

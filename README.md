@@ -23,6 +23,7 @@ dotfiles/
 ├── lib ............. (Intended to be included in scripts)
 │
 ├── macos ........... OS-specific configuration files (not well managed)
+├── linux
 └── windows
 ```
 

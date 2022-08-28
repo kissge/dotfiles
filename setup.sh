@@ -17,7 +17,7 @@ function yesno() {
     done
 }
 
-if which bat >/dev/null; then
+if which bat >/dev/null 2>&1; then
     function show() {
         bat "$@"
     }
@@ -29,10 +29,14 @@ fi
 
 echo '1. Checking required packages...'
 for cmd in git zsh; do
-    if ! which $cmd >/dev/null; then
+    if ! which $cmd >/dev/null 2>&1; then
         die "$cmd is not installed"
     fi
 done
+
+if ! which ssh >/dev/null 2>&1; then
+    echo "Warning: ssh is not installed; git clone using SSH is likely to fail."
+fi
 
 echo '2. Checking existing rc files...'
 for rc in ~/.zshrc ~/.zlogin ~/.zprofile; do

@@ -3,11 +3,11 @@
 !/zsh
 !/git
 !/tmux
+!/plasma-workspace
 !/bin
 !/lib
 !/macos
 !/windows
-!/linux
 !/.gitignore
 !/LICENSE.txt
 !/README.md

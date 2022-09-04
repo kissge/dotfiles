@@ -20,7 +20,10 @@ __prompt_host_fg=$(readable_fg_color "$__prompt_host_bg")
 function generate_dark_bg_color() {
     perl -MPOSIX -e '$h = $ARGV[0] * 6 / 256; $i = floor($h); $f = $h - $i; $q = 5 - 4 * $f; $t = 1 + 4 * $f;
         $r = (5, $q, 1, 1, $t, 5)[$i] * 10; $g = ($t, 5, 5, $q, 1, 1)[$i] * 10; $b = (1, $t, $t, 5, 5, $q)[$i] * 10;
-        printf("\033]1337;SetColors=bg=%02x%02x%02x\033\\", $r, $g, $b);' $1
+        # iTerm2
+        printf("\033]1337;SetColors=bg=%02x%02x%02x\033\\", $r, $g, $b);
+        # Konsole
+        printf("\033]11;#%02x%02x%02x\007", $r, $g, $b);' $1
 }
 
 __terminal_host_bg=$(generate_dark_bg_color "$__prompt_host_bg")

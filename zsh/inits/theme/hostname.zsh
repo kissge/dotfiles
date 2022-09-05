@@ -23,10 +23,14 @@ function generate_dark_bg_color() {
         # iTerm2
         printf("\033]1337;SetColors=bg=%02x%02x%02x\033\\", $r, $g, $b);
         # Konsole
-        printf("\033]11;#%02x%02x%02x\007", $r, $g, $b);' $1
+        printf("\033]11;#%02x%02x%02x\007", $r, $g, $b);' "$1"
 }
 
-__terminal_host_bg=$(generate_dark_bg_color "$__prompt_host_bg")
+if (( ${+SSH_CONNECTION} )); then
+    __terminal_host_bg=$(generate_dark_bg_color "$__prompt_host_bg")
+else
+    __terminal_host_bg=$(generate_dark_bg_color 256)
+fi
 
 function __prompt_hostname() {
     # <background $__prompt_host_bg>

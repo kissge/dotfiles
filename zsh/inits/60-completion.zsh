@@ -13,7 +13,7 @@ zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview	'
     ([[ -f $realpath ]] && (bat --style=numbers --color=always $realpath || cat $realpath)) ||
       ([[ -d $realpath ]] && tree -CL 1 $realpath) ||
       echo $desc
-  fi'
+  fi 2> /dev/null'
 zstyle ':fzf-tab:complete:git-show:*' fzf-preview	'case "$group" in
 	"commit tag") git show $word | diff-so-fancy ;;
 	*) git show $word | diff-so-fancy ;;
@@ -25,8 +25,8 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview	'case "$group" in
 	esac'
 zstyle ':fzf-tab:complete:man:*' fzf-preview 'man $word'
 zstyle ':fzf-tab:complete:*:*' fzf-preview '
-  ([[ -f $realpath ]] && (bat --style=numbers --color=always $realpath || cat $realpath)) ||
-    ([[ -d $realpath ]] && tree -CL 1 $realpath) ||
+  ([[ -f $realpath ]] && (bat --style=numbers --color=always $realpath || cat $realpath) 2> /dev/null) ||
+    ([[ -d $realpath ]] && tree -CL 1 $realpath 2> /dev/null) ||
     echo $desc'
 zstyle ':fzf-tab:complete:*:options' fzf-preview
 zstyle ':fzf-tab:complete:*:options' fzf-flags '--no-preview'

@@ -21,6 +21,15 @@
         cf = commit --fixup
         rf = rebase --interactive --autosquash
         rfa = rebase --interactive --autosquash --autostash
+        fixup = "!f() { \
+                if [ \"$1\" = -a ]; then \
+                        shift; \
+                        git commit -a --fixup \"$@\"; \
+                else \
+                        git commit --fixup \"$@\"; \
+                fi && \
+                EDITOR=$(which true) git rfa \"$1\"^; \
+        }; f"
         whoami = !echo `git config --get user.name` \\<`git config --get user.email`\\>
         whowasi = log -1 --format='git config --local user.name \"%an\" && git config --local user.email \"%ae\"'
         bye = !git branch --merged | grep -vF '*' | xargs -r git branch -d

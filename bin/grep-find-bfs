@@ -1,0 +1,16 @@
+#!/bin/bash
+
+root=$1
+shift
+
+GREP=grep
+if which ggrep >/dev/null 2>&1; then
+  GREP='ggrep --color=auto'
+fi
+
+depth=0
+while [ -n "$(find "$root" -mindepth "$depth" -maxdepth "$depth" -print -quit)" ]; do
+  echo -n depth = $depth $'\r' >&2
+  find "$root" -type f -mindepth "$depth" -maxdepth "$depth" -exec $GREP -nH "$@" {} \+
+  ((depth++))
+done

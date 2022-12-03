@@ -100,4 +100,13 @@ else
     chsh -s $(grep -m 1 -F /zsh /etc/shells)
 fi
 
+echo '6. Adding some finishing touches...'
+mkdir -pv ~/git
+if [ ! -e ~/Downloads ] && which powershell.exe; then
+    windows_downloads_dir=/mnt/c/Users/$(powershell.exe 'Write-Host -NoNewline $env:UserName')/Downloads
+    if [ -e "$windows_downloads_dir" ]; then
+        ln -vs "$windows_downloads_dir" ~/
+    fi
+fi
+
 echo 'Completed!'

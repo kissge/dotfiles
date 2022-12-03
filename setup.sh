@@ -97,7 +97,7 @@ echo '5. Setting login shell...'
 if [[ $SHELL =~ zsh$ ]]; then
     echo 'zsh is already your login shell'
 else
-    chsh -s $(which zsh)
+    chsh -s $(grep -m 1 -F /zsh /etc/shells)
 fi
 
 echo 'Completed!'

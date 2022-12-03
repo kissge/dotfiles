@@ -61,6 +61,13 @@ fi
 
 echo '3. Setting ~/.config up...'
 tmpdir=$(mktemp -d)
+
+if which ssh >/dev/null 2>&1 && ! ls ~/.ssh/*.pub >/dev/null 2>&1; then
+    if yesno 'Run `ssh-keygen -t ed25519`?'; then
+        ssh-keygen -t ed25519
+    fi
+fi
+
 if yesno 'git clone using SSH, not HTTPS?'; then
     git clone git@github.com:kissge/dotfiles.git "$tmpdir"
 else

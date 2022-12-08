@@ -2,6 +2,10 @@
 
 set -Eeuo pipefail
 
+function exist() {
+    which "$1" >/dev/null 2>&1
+}
+
 function die() {
     echo $'[Error]\t'"$@" 1>&2
     exit 1
@@ -17,7 +21,7 @@ function yesno() {
     done
 }
 
-if which bat >/dev/null 2>&1; then
+if exist bat; then
     function show() {
         bat "$@"
     }
@@ -29,12 +33,12 @@ fi
 
 echo '1. Checking required packages...'
 for cmd in git zsh; do
-    if ! which $cmd >/dev/null 2>&1; then
+    if ! exist $cmd; then
         die "$cmd is not installed"
     fi
 done
 
-if ! which ssh >/dev/null 2>&1; then
+if ! exist ssh; then
     echo "Warning: ssh is not installed; git clone using SSH is likely to fail."
 fi
 
@@ -62,7 +66,7 @@ fi
 echo '3. Setting ~/.config up...'
 tmpdir=$(mktemp -d)
 
-if which ssh >/dev/null 2>&1 && ! ls ~/.ssh/*.pub >/dev/null 2>&1; then
+if exist ssh-keygen && ! ls ~/.ssh/*.pub >/dev/null 2>&1; then
     if yesno 'Run `ssh-keygen -t ed25519`?'; then
         ssh-keygen -t ed25519
     fi
@@ -98,11 +102,15 @@ if [[ $SHELL =~ zsh$ ]]; then
     echo 'zsh is already your login shell'
 else
     chsh -s $(grep -m 1 -F /zsh /etc/shells)
+
+    if [ -x /opt/distrod/bin/distrod ]; then
+        sudo /opt/distrod/bin/distrod enable
+    fi
 fi
 
 echo '6. Adding some finishing touches...'
 mkdir -pv ~/git
-if [ ! -e ~/Downloads ] && which powershell.exe; then
+if [ ! -e ~/Downloads ] && exist powershell.exe; then
     windows_downloads_dir=/mnt/c/Users/$(powershell.exe 'Write-Host -NoNewline $env:UserName')/Downloads
     if [ -e "$windows_downloads_dir" ]; then
         ln -vs "$windows_downloads_dir" ~/

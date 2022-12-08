@@ -19,6 +19,8 @@ brew "ffmpeg"
 brew "gh"
 # Interpreter for PostScript and PDF
 brew "ghostscript"
+# Highest-quality GIF encoder based on pngquant
+brew "gifski"
 # Distributed revision control system
 brew "git"
 # Graph visualization software from AT&T and Bell Labs
@@ -63,6 +65,8 @@ brew "scrcpy"
 brew "shellcheck"
 # Soak up standard input and write to a file
 brew "sponge"
+# Proxy server that works as a poor man's VPN
+brew "sshuttle"
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
@@ -137,8 +141,6 @@ cask "slack"
 cask "spotify"
 # Spotify and iTunes in the menu bar
 cask "spotmenu"
-# Time tracker
-cask "toggl-track"
 # Tool for creating dynamic digital art
 cask "touchdesigner"
 # Management tool for Unity
@@ -152,5 +154,7 @@ mas "Kindle", id: 405399194
 mas "LINE", id: 539883307
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft To Do", id: 1274495053
+mas "Toggl Track", id: 1291898086
 mas "Up Next", id: 1355117041
+mas "VMware Remote Console", id: 1230249825
 mas "Xcode", id: 497799835

@@ -110,10 +110,14 @@ fi
 
 echo '6. Adding some finishing touches...'
 mkdir -pv ~/git
-if [ ! -e ~/Downloads ] && exist powershell.exe; then
-    windows_downloads_dir=/mnt/c/Users/$(powershell.exe 'Write-Host -NoNewline $env:UserName')/Downloads
-    if [ -e "$windows_downloads_dir" ]; then
-        ln -vs "$windows_downloads_dir" ~/
+if exist powershell.exe; then
+    windows_home=/mnt/c/Users/$(powershell.exe 'Write-Host -NoNewline $env:UserName')
+    if [ ! -e ~/Downloads ] && [ -e "$windows_home/Downloads" ]; then
+        ln -vs "$windows_home/Downloads" ~/
+    fi
+
+    if [ ! -e ~/Dropbox ] && [ -e "$windows_home/Dropbox" ]; then
+        ln -vs "$windows_home/Dropbox" ~/
     fi
 fi
 

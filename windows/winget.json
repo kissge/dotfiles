@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
-	"CreationDate" : "2022-12-03T21:39:22.647-00:00",
+	"CreationDate" : "2022-12-09T09:13:18.644-00:00",
 	"Sources" : 
 	[
 		{
@@ -22,13 +22,13 @@
 					"PackageIdentifier" : "Microsoft.Office"
 				},
 				{
-					"PackageIdentifier" : "Microsoft.OneDrive"
-				},
-				{
 					"PackageIdentifier" : "Microsoft.Teams"
 				},
 				{
 					"PackageIdentifier" : "Toggl.ToggleTrack"
+				},
+				{
+					"PackageIdentifier" : "Zoom.Zoom"
 				},
 				{
 					"PackageIdentifier" : "SlackTechnologies.Slack"

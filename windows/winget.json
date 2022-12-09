@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
-	"CreationDate" : "2022-12-09T09:13:18.644-00:00",
+	"CreationDate" : "2022-12-09T10:27:12.049-00:00",
 	"Sources" : 
 	[
 		{
@@ -32,6 +32,12 @@
 				},
 				{
 					"PackageIdentifier" : "SlackTechnologies.Slack"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.DotNet.DesktopRuntime.7"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.PowerToys"
 				},
 				{
 					"PackageIdentifier" : "AgileBits.1Password"

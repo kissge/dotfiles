@@ -1,5 +1,3 @@
-ZIM_HOME="${ZDOTDIR:-${HOME}}"/.zim
-
 if [[ ! -e "${ZIM_HOME}"/zimfw.zsh ]]; then
   echo 'Downloading zimfw plugin manager...'
 

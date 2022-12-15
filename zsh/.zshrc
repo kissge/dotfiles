@@ -1,6 +1,7 @@
 source "$ZDOTDIR"/inits/00-zsh.zsh
 source "$ZDOTDIR"/inits/01-zim.zsh
 source "$ZDOTDIR"/inits/10-alias.zsh
+source "$ZDOTDIR"/inits/11-function.zsh
 source "$ZDOTDIR"/inits/20-builtin.zsh
 source "$ZDOTDIR"/inits/21-builtin-dotenv.zsh
 source "$ZDOTDIR"/inits/22-builtin-firebase.zsh

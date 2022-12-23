@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -euo pipefail
+
+interval=1
+save_step=10
+
+function usage() {
+  echo 'Usage: interval [-t INTERVAL] [-s SAVE_STEP] command...' >&2
+  exit 1
+}
+
+while getopts t:s: flag; do
+  case "${flag}" in
+  t) interval=${OPTARG} ;;
+  s) save_step=${OPTARG} ;;
+  *) usage ;;
+  esac
+done
+shift $(($OPTIND - 1))
+if [ $# -eq 0 ]; then
+  usage
+fi
+
+while :; do
+  for ((i = 0; i < save_step; ++i)); do
+    echo -n $'\r'$(date): $("$@")
+    sleep "$interval"
+  done
+  echo
+done

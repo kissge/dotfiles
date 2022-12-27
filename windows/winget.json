@@ -1,6 +1,6 @@
 {
 	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
-	"CreationDate" : "2022-12-09T10:27:12.049-00:00",
+	"CreationDate" : "2022-12-27T18:50:42.978-00:00",
 	"Sources" : 
 	[
 		{
@@ -14,6 +14,9 @@
 				},
 				{
 					"PackageIdentifier" : "Microsoft.Edge"
+				},
+				{
+					"PackageIdentifier" : "Microsoft.EdgeWebView2Runtime"
 				},
 				{
 					"PackageIdentifier" : "Microsoft.WindowsTerminal"
@@ -40,7 +43,13 @@
 					"PackageIdentifier" : "Microsoft.PowerToys"
 				},
 				{
+					"PackageIdentifier" : "Krisp.Krisp"
+				},
+				{
 					"PackageIdentifier" : "AgileBits.1Password"
+				},
+				{
+					"PackageIdentifier" : "Google.Drive"
 				},
 				{
 					"PackageIdentifier" : "Microsoft.Teams"
@@ -54,12 +63,12 @@
 			],
 			"SourceDetails" : 
 			{
-				"Argument" : "https://winget.azureedge.net/cache",
+				"Argument" : "https://cdn.winget.microsoft.com/cache",
 				"Identifier" : "Microsoft.Winget.Source_8wekyb3d8bbwe",
 				"Name" : "winget",
 				"Type" : "Microsoft.PreIndexed.Package"
 			}
 		}
 	],
-	"WinGetVersion" : "1.2.10691"
+	"WinGetVersion" : "1.3.2691"
 }

@@ -123,6 +123,8 @@ cask "inkscape"
 cask "iterm2"
 # Open-source keystroke visualizer
 cask "keycastr"
+# Sound clear in online meetings
+cask "krisp"
 # Web browser
 cask "microsoft-edge"
 # Meet, chat, call, and collaborate in just one place

@@ -1,11 +1,17 @@
 {
 	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
-	"CreationDate" : "2022-12-27T18:50:42.978-00:00",
+	"CreationDate" : "2023-01-27T17:57:12.071-00:00",
 	"Sources" : 
 	[
 		{
 			"Packages" : 
 			[
+				{
+					"PackageIdentifier" : "Amazon.Kindle"
+				},
+				{
+					"PackageIdentifier" : "Audacity.Audacity"
+				},
 				{
 					"PackageIdentifier" : "Dropbox.Dropbox"
 				},
@@ -28,7 +34,7 @@
 					"PackageIdentifier" : "Microsoft.Teams"
 				},
 				{
-					"PackageIdentifier" : "Toggl.ToggleTrack"
+					"PackageIdentifier" : "Toggl.TogglTrack"
 				},
 				{
 					"PackageIdentifier" : "Zoom.Zoom"

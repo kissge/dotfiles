@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# ファイルを大量に生成するプロセスの進捗状況とストレージの残り容量を表示する
+# Example: interval track-file-progress output/
+
+set -euo pipefail
+
+dir=$1
+files=$(find "$dir" -type f | wc -l)
+size=$(du -sh "$dir" | cut -f1)
+available=$(df -h "$dir" | tail -n1 | awk '{print $4}')
+
+echo "$dir: $files files, $size ($available available)"

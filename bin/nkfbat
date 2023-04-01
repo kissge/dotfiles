@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Usage: nkfbat file1 file2 ...
+
+# shellcheck disable=SC2046
+eval bat $(
+  for file; do
+    echo '--file-name "'"$file"'" <(nkf -w "'"$file"'")'
+  done
+)

@@ -2,7 +2,7 @@ zmodule input
 zmodule termtitle
 zmodule utility
 
-zmodule Aloxaf/fzf-tab
+zmodule marlonrichert/zsh-autocomplete
 zmodule gnachman/iTerm2-shell-integration --source shell_integration/zsh
 
 zmodule z-shell/F-Sy-H

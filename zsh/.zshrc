@@ -13,3 +13,4 @@ source "$ZDOTDIR"/inits/32-hook-timer.zsh
 source "$ZDOTDIR"/inits/40-theme.zsh
 source "$ZDOTDIR"/inits/50-history.zsh
 source "$ZDOTDIR"/inits/60-completion.zsh
+source "$ZDOTDIR"/inits/61-completion-autocomplete.zsh

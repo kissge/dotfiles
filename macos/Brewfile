@@ -75,8 +75,8 @@ brew "tree"
 brew "watch"
 # Internet file retriever
 brew "wget"
-# Download YouTube videos from the command-line
-brew "youtube-dl"
+# Fork of youtube-dl with additional features and fixes
+brew "yt-dlp"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Terminal utility for exploring and arranging tabular data

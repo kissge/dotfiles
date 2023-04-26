@@ -1,0 +1,11 @@
+#!/bin/bash
+
+du_output=''
+lines=0
+echo
+
+du -sh "$@" | while read -r line; do
+  du_output=$(sort -rh <<<"$du_output"$'\n'"$line")
+  echo -n $'\033['"$((lines++))A"
+  sed -E $'s/^/\033[K/' <<<"$du_output"
+done

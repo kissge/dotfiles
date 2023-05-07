@@ -67,6 +67,8 @@ brew "shellcheck"
 brew "sponge"
 # Proxy server that works as a poor man's VPN
 brew "sshuttle"
+# Change macOS audio source from the command-line
+brew "switchaudio-osx"
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
@@ -123,8 +125,8 @@ cask "inkscape"
 cask "iterm2"
 # Open-source keystroke visualizer
 cask "keycastr"
-# Sound clear in online meetings
-cask "krisp"
+# Interface for reading and syncing eBooks
+cask "kindle"
 # Web browser
 cask "microsoft-edge"
 # Meet, chat, call, and collaborate in just one place
@@ -152,7 +154,7 @@ cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
 mas "GarageBand", id: 682658836
-mas "Kindle", id: 405399194
+mas "LadioCast", id: 411213048
 mas "LINE", id: 539883307
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft To Do", id: 1274495053

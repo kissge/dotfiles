@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+output_device_names = ARGV
+
+current = output_device_names.index(`switchaudiosource -c`.strip)
+target = (current.nil? || current >= output_device_names.length - 1) ? 0 : current + 1
+
+`switchaudiosource -t output -s "#{output_device_names[target]}"`
+`switchaudiosource -t system -s "#{output_device_names[target]}"`  # 通知音も合わせて変えないと挙動がおかしい
+`osascript -e 'display notification "Audio output switched to #{output_device_names[target]}" with title "toggle-audio" sound name "Ping"'`

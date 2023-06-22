@@ -41,8 +41,6 @@ brew "nano"
 brew "nim"
 # Network Kanji code conversion Filter (NKF)
 brew "nkf"
-# Manage multiple Node.js versions
-brew "nvm"
 # OCaml package manager
 brew "opam"
 # Open client for Cisco AnyConnect VPN

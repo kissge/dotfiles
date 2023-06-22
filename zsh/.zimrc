@@ -2,6 +2,8 @@ zmodule input
 zmodule termtitle
 zmodule utility
 
+zmodule asdf
+
 zmodule marlonrichert/zsh-autocomplete
 zmodule gnachman/iTerm2-shell-integration --source shell_integration/zsh
 

@@ -60,3 +60,5 @@
         enabled = true
 [interactive]
         diffFilter = diff-so-fancy --patch
+[include]
+        path = ~/Dropbox/Settings/gitconfig

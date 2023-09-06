@@ -1,64 +1,91 @@
+# -*- mode: gitconfig -*-
+
 [pull]
-        ff = only
+ff = only
+
 [push]
-        default = current
+default = current
+
 [pager]
-        log = diff-so-fancy | less -RFX
-        show = diff-so-fancy | less -RFX
-        diff = diff-so-fancy | less -RFX
-        grep = less -RFX
+log = diff-so-fancy | less -RFX
+show = diff-so-fancy | less -RFX
+diff = diff-so-fancy | less -RFX
+grep = less -RFX
+
 [log]
-        abbrevCommit = true
-        decorate = short
+abbrevCommit = true
+decorate = short
+
 [fetch]
-        prune = true
+prune = true
+
 [alias]
-        unstage = reset HEAD --
-        canoe = commit --amend --no-edit
-        dc = diff --cached
-        l = log --branches --graph
-        lc = !git log \"$(git show-parent-branch)\"..
-        cf = commit --fixup
-        rf = rebase --interactive --autosquash
-        rfa = rebase --interactive --autosquash --autostash
-        fixup = "!f() { \
-                if [ \"$1\" = -a ]; then \
-                        shift; \
-                        git commit -a --fixup \"$@\"; \
-                else \
-                        git commit --fixup \"$@\"; \
-                fi && \
-                EDITOR=$(which true) git rfa \"$1\"^; \
-        }; f"
-        whoami = !echo `git config --get user.name` \\<`git config --get user.email`\\>
-        whowasi = log -1 --format='git config --local user.name \"%an\" && git config --local user.email \"%ae\"'
-        bye = !git branch --merged | grep -vF '*' | xargs -r git branch -d
-        remove-untracked = !git ls-files -zo --exclude-standard | xargs -0 rm -v
-        tree = !git ls-tree -r --name-only HEAD | tree --fromfile -N
-        show-default-branch = !{ \
-                                 git symbolic-ref --short refs/remotes/origin/HEAD | cut -d/ -f2- ";" \
-                                 git branch -l main ";" \
-                                 git branch -l master ";" \
-                               } 2> /dev/null | sed -n '"1s/^[* ]*//;1p"'
-        show-current-branch = rev-parse --abbrev-ref HEAD
-        show-parent-branch = !git show-branch | cut -d']' -f1 | grep -F '*' | grep -vF \"$(git show-current-branch)\" | \
-                                head -n1 | sed -e 's/^.*\\[//' | sed -e 's/[~^].*//'
-        ready = !git switch \"$(git show-default-branch)\" && git pull && git bye
-        code = "!code ."
-        exec = "!exec "
-        toriaezu = "!f() { git stash store -m \"$*\" $(git stash create) && git stash list; }; \
-                    f toriaezu $(git show-current-branch) $(date)"
-        empty = commit --allow-empty --allow-empty-message -m ''
+# Informative
+dc = diff --cached
+l = log --branches --graph
+lp = !git log \"$(git show-parent-branch)\"..
+whoami = !echo $(git config --get user.name) '<'$(git config --get user.email)'>'
+whowasi = log -1 --format='git config --local user.name \"%an\" && git config --local user.email \"%ae\"'
+tree = !git ls-tree -r --name-only HEAD | tree --fromfile -N
+show-default-branch = !{ \
+        git symbolic-ref --short refs/remotes/origin/HEAD | cut -d/ -f2- ";" \
+        git branch -l main ";" \
+        git branch -l master ";" \
+    } 2> /dev/null | sed -n '"1s/^[* ]*//;1p"'
+show-current-branch = rev-parse --abbrev-ref HEAD
+show-parent-branch = !git show-branch | cut -d']' -f1 | grep -F '*' | \
+    head -n1 | sed -e 's/^.*\\[//' | sed -e 's/[~^].*//'
+
+# Fixing history
+canoe = commit --amend --no-edit
+cf = commit --fixup
+rf = rebase --interactive --autosquash
+rfa = rebase --interactive --autosquash --autostash
+fixup = "!f() { \
+    if [ \"$1\" = -a ]; then \
+        shift; \
+        git commit -a --fixup \"$@\"; \
+    else \
+        git commit --fixup \"$@\"; \
+    fi && \
+    EDITOR=$(which true) git rfa \"$1\"^; \
+}; f"
+
+# Commit
+empty = commit --allow-empty --allow-empty-message -m ''
+
+# Stash
+toriaezu = "!f() { git stash store -m \"$*\" $(git stash create) && git stash list; }; \
+    f toriaezu $(git show-current-branch) $(date)"
+
+# Staging
+unstage = reset HEAD --
+
+# Maintenance
+bye = !git branch --merged | grep -vF '*' | xargs -r git branch -d
+remove-untracked = !git ls-files -zo --exclude-standard | xargs -0 rm -v
+ready = !git switch \"$(git show-default-branch)\" && git pull && git bye
+
+# Utility
+code = "!code ."
+exec = "!exec "
+
 [diff]
-        algorithm = patience
-        indentHeuristic = true
+algorithm = patience
+indentHeuristic = true
+
 [credential]
-        helper = cache --timeout=360000
+helper = cache --timeout=360000
+
 [core]
-        quotepath = false
+quotepath = false
+
 [rerere]
-        enabled = true
+enabled = true
+
 [interactive]
-        diffFilter = diff-so-fancy --patch
+diffFilter = diff-so-fancy --patch
+
 [include]
-        path = ~/Dropbox/Settings/gitconfig
+# Silently ignored if file does not exist
+path = ~/Dropbox/Settings/gitconfig

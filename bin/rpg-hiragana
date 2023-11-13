@@ -1,0 +1,12 @@
+#!/usr/bin/env -S perl -CS
+
+use strict;
+use warnings;
+use utf8;
+use feature 'say';
+
+open my $fh, "<:raw", "/dev/urandom" or die $!;
+say map {
+    read($fh, my $byte, 1);
+    chr(0x3042 + ord($byte) % ((0x308C - 0x3041) / 2) * 2)
+} 1..($ARGV[0] // 16);

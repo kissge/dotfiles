@@ -2,14 +2,14 @@
 
 set -euo pipefail
 
-. "${HOME}"/.line-api-token
+. "${HOME}"/.line-api-token 2> /dev/null || . "${HOME}"/Dropbox/Settings/.line-api-token
 
 out=$(mktemp -t line-job.stdout.XXX)
 err=$(mktemp -t line-job.stderr.XXX)
 
 set +e
 SECONDS=0
-bash -c "$*" >"$out" 2>"$err"
+bash -c "$*" > "$out" 2> "$err"
 exitcode=$?
 set -e
 if [ $exitcode -eq 0 ]; then
@@ -18,6 +18,6 @@ else
   result="😢 [$exitcode]"
 fi
 
-line-me <<<"$result $SECONDS s"$'\n'"$*"
-[ -s "$out" ] && line-me --no-header <<<$'stdout:\n'"$(cat "$out")"
-[ -s "$err" ] && line-me --no-header <<<$'stderr:\n'"$(cat "$err")"
+line-me <<< "$result $SECONDS s"$'\n'"$*"
+[ -s "$out" ] && line-me --no-header <<< $'stdout:\n'"$(cat "$out")"
+[ -s "$err" ] && line-me --no-header <<< $'stderr:\n'"$(cat "$err")"

@@ -6,7 +6,11 @@ TEMP=$(mktemp)
 
 winget.exe export "$TEMP"
 jq '.Sources |= map(
-  .Packages |= (sort_by(.PackageIdentifier))
+  .Packages |= ([.[] | select(
+    .PackageIdentifier |
+    test("^Microsoft\\.(DevHome|DotNet\\.DesktopRuntime|Edge|Teams$|VCRedist|WindowsTerminal)") |
+    not
+  )] | sort_by(.PackageIdentifier))
 )' "$TEMP" > ~/.config/windows/winget.json
 
 rm "$TEMP"

@@ -42,28 +42,10 @@
           "PackageIdentifier": "Google.GoogleDrive"
         },
         {
-          "PackageIdentifier": "Krisp.Krisp"
-        },
-        {
           "PackageIdentifier": "LINE.LINE"
         },
         {
-          "PackageIdentifier": "Microsoft.DotNet.DesktopRuntime.7"
-        },
-        {
-          "PackageIdentifier": "Microsoft.Edge"
-        },
-        {
-          "PackageIdentifier": "Microsoft.EdgeWebView2Runtime"
-        },
-        {
-          "PackageIdentifier": "Microsoft.OneDrive"
-        },
-        {
           "PackageIdentifier": "Microsoft.PowerToys"
-        },
-        {
-          "PackageIdentifier": "Microsoft.Teams"
         },
         {
           "PackageIdentifier": "Microsoft.Teams.Classic"
@@ -72,7 +54,7 @@
           "PackageIdentifier": "Microsoft.VisualStudioCode"
         },
         {
-          "PackageIdentifier": "Microsoft.WindowsTerminal"
+          "PackageIdentifier": "OBSProject.OBSStudio"
         },
         {
           "PackageIdentifier": "SlackTechnologies.Slack"

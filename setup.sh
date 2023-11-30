@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 function exist() {
-    which "$1" >/dev/null 2>&1
+    which "$1" > /dev/null 2>&1
 }
 
 function die() {
@@ -38,10 +38,6 @@ for cmd in git zsh; do
     fi
 done
 
-if ! exist ssh; then
-    echo "Warning: ssh is not installed; git clone using SSH is likely to fail."
-fi
-
 echo '2. Checking existing rc files...'
 for rc in ~/.zshrc ~/.zlogin ~/.zprofile; do
     if [ -f "$rc" ]; then
@@ -66,15 +62,14 @@ fi
 echo '3. Setting ~/.config up...'
 tmpdir=$(mktemp -d)
 
-if exist ssh-keygen && ! ls ~/.ssh/*.pub >/dev/null 2>&1; then
-    if yesno 'Run `ssh-keygen -t ed25519`?'; then
-        ssh-keygen -t ed25519
-    fi
-fi
-
-if yesno 'git clone using SSH, not HTTPS?'; then
+if exist ssh.exe; then
+    echo 'git clone using ssh.exe'
+    GIT_SSH=ssh.exe git clone git@github.com:kissge/dotfiles.git "$tmpdir"
+elif exist ssh; then
+    echo 'git clone using ssh'
     git clone git@github.com:kissge/dotfiles.git "$tmpdir"
 else
+    echo 'git clone using https (ssh unavailable)'
     git clone https://github.com/kissge/dotfiles.git "$tmpdir"
 fi
 
@@ -95,7 +90,7 @@ fi
 
 echo '4. Setting ~/.zshenv up...'
 echo 'ZDOTDIR="${HOME}"/.config/zsh
-source "$ZDOTDIR"/.zshenv' >~/.zshenv
+source "$ZDOTDIR"/.zshenv' > ~/.zshenv
 
 echo '5. Setting login shell...'
 if [[ $SHELL =~ zsh$ ]]; then
@@ -124,6 +119,10 @@ if exist powershell.exe; then
     if [ ! -e ~/Dropbox ] && [ -e "$windows_home/Dropbox" ]; then
         ln -vs "$windows_home/Dropbox" ~/
     fi
+fi
+
+if exist ssh.exe; then
+    ln -vs ~/.config/git/{,.}wsl.inc
 fi
 
 echo 'Completed!'

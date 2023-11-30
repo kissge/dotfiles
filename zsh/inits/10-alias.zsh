@@ -20,3 +20,7 @@ alias gdc='git diff --cached'
 if (( ${+commands[ggrep]} )); then
   alias grep='ggrep --color=auto'
 fi
+
+if (( ${+commands[ssh.exe]} )); then
+  alias ssh=ssh.exe
+fi

@@ -9,5 +9,5 @@ winget import winget.json
 ## Export (System -> winget.json)
 
 ```
-winget export winget.json
+winget-sync
 ```

@@ -74,6 +74,9 @@ exec = "!exec "
 algorithm = patience
 indentHeuristic = true
 
+[merge]
+conflictstyle = diff3
+
 [credential]
 helper = cache --timeout=360000
 

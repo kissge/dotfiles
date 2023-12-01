@@ -90,3 +90,4 @@ diffFilter = diff-so-fancy --patch
 # Silently ignored if file does not exist
 path = ~/Dropbox/Settings/gitconfig
 path = .wsl.inc
+path = .local.inc

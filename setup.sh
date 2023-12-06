@@ -111,7 +111,7 @@ fi
 echo '6. Adding some finishing touches...'
 mkdir -pv ~/git
 if exist powershell.exe; then
-    windows_home=/mnt/c/Users/$(powershell.exe 'Write-Host -NoNewline $env:UserName')
+    windows_home=$(wslpath $(powershell.exe '$env:UserProfile'))
     if [ ! -e ~/Downloads ] && [ -e "$windows_home/Downloads" ]; then
         ln -vs "$windows_home/Downloads" ~/
     fi

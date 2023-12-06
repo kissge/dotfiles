@@ -3,38 +3,27 @@
         return
     fi
 
-    local old_files=$(
+    local old_files=(${(0)"$(
         cd ~/Downloads
-
-        if (( ${+commands[powershell.exe]} )); then
-            # WSL
-            powershell.exe -Command 'Get-ChildItem | ? { $_.LastAccessTime -lt (Get-Date).AddDays(-3) }'
-        elif command ls --color >/dev/null 2>&1; then
-            # GNU
-            find . -mindepth 1 -maxdepth 1 -atime +3 -exec ls --color=always -tdluh {} \+
-        else
-            # BSD
-            find . -mindepth 1 -maxdepth 1 -atime +3 -exec env CLICOLOR=1 CLICOLOR_FORCE=1 ls -tdluh {} \+
-        fi
-    )
+        find . -mindepth 1 -maxdepth 1 -atime +3 -print0
+        # A bit hacky, but on NTFS, last access time cannot be simply queried against folders.
+        find . -maxdepth 1 -type d -exec \
+            zsh -c '[[ -n $(find "$1" -type f -atime -3 -print -quit) ]] || printf %s\\0 "$1"' zsh {} \;
+    )"})
 
     if [ -n "$old_files" ]; then
-        echo 'These file(s) have not been accessed for more than three days:' >&2
-        echo "$old_files" >&2
-        echo 'To delete these files, type `clean_older_files'"'"'.' >&2
-    fi
-
-    clean_older_files() {
+        echo 'These file(s) have not been accessed for more than three days:'
         (
             cd ~/Downloads
-
-            if (( ${+commands[powershell.exe]} )); then
-                powershell.exe -Command 'Get-ChildItem |
-                    ? { $_.LastAccessTime -lt (Get-Date).AddDays(-3) } |
-                    Remove-Item -Recurse -Verbose'
-            else
-                find . -mindepth 1 -maxdepth 1 -atime +3 -exec rm -rfv {} \+ | command less -RFX
-            fi
+            ls -tdluh "$old_files[@]"
         )
-    }
-}
+        echo 'To delete these files, type `clean_older_files'"'"'.'
+
+        eval "clean_older_files() {
+            (
+                cd ~/Downloads
+                rm -rfv ${(q)old_files[@]} | less -RFX
+            )
+        }"
+    fi
+} >&2

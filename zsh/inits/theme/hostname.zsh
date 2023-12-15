@@ -29,7 +29,7 @@ function generate_dark_bg_color() {
 if (( ${+SSH_CONNECTION} )); then
     __terminal_host_bg=$(generate_dark_bg_color "$__prompt_host_bg")
 else
-    __terminal_host_bg='\033]1337;SetColors=bg=000000\033\\\033]111\007'
+    __terminal_host_bg='\033]1337;SetColors=bg=000000\033\\\033]11;#000000\007'
 fi
 
 function __prompt_hostname() {

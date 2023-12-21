@@ -23,4 +23,5 @@ fi
 
 if (( ${+commands[ssh.exe]} )); then
   alias ssh=ssh.exe
+  alias scp=scp.exe
 fi

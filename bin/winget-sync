@@ -8,7 +8,7 @@ winget.exe export "$TEMP"
 jq '.Sources |= map(
   .Packages |= ([.[] | select(
     .PackageIdentifier |
-    test("^Microsoft\\.(DevHome|DotNet\\.DesktopRuntime|Edge|Teams$|VCRedist|WindowsTerminal)") |
+    test("^Microsoft\\.(AppInstaller|DevHome|DotNet\\.DesktopRuntime|Edge|Teams$|UI|VCLibs|VCRedist|WindowsTerminal)") |
     not
   )] | sort_by(.PackageIdentifier))
 )' "$TEMP" > ~/.config/windows/winget.json

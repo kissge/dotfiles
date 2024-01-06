@@ -24,7 +24,7 @@ fi
 
 while :; do
   for ((i = 0; i < save_step; ++i)); do
-    echo -n $'\r'$(date): $("$@")
+    echo -n $'\r'$(date -Ins): $("$@")
     sleep "$interval"
   done
   echo

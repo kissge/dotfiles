@@ -1,6 +1,6 @@
 {
   "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
-  "CreationDate": "2023-11-24T17:54:23.953-00:00",
+  "CreationDate": "2024-01-10T04:45:13.102-00:00",
   "Sources": [
     {
       "Packages": [
@@ -48,7 +48,7 @@
           "PackageIdentifier": "Microsoft.PowerToys"
         },
         {
-          "PackageIdentifier": "Microsoft.Teams.Classic"
+          "PackageIdentifier": "Microsoft.Teams"
         },
         {
           "PackageIdentifier": "Microsoft.VisualStudioCode"
@@ -74,5 +74,5 @@
       }
     }
   ],
-  "WinGetVersion": "1.6.3133"
+  "WinGetVersion": "1.6.3482"
 }

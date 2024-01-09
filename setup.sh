@@ -116,8 +116,14 @@ if exist powershell.exe; then
         ln -vs "$windows_home/Downloads" ~/
     fi
 
-    if [ ! -e ~/Dropbox ] && [ -e "$windows_home/Dropbox" ]; then
-        ln -vs "$windows_home/Dropbox" ~/
+    if [ ! -e ~/Dropbox ]; then
+        # https://help.dropbox.com/installs/locate-dropbox-folder
+        if dropbox_windows_path=$(powershell.exe '
+            Get-Content "$env:LOCALAPPDATA\Dropbox\info.json" -ErrorAction Stop |
+                ConvertFrom-Json | % personal | % path |
+                Write-Host -NoNewline' 2> /dev/null); then
+            ln -vs "$(wslpath "$dropbox_windows_path")" ~/Dropbox
+        fi
     fi
 fi
 

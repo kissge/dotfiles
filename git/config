@@ -48,7 +48,7 @@ fixup = "!f() { \
     else \
         git commit --fixup \"$@\"; \
     fi && \
-    EDITOR=$(which true) git rfa \"$1\"^; \
+    git -c core.editor=true rfa \"$1\"^; \
 }; f"
 
 # Commit

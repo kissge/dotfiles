@@ -1,5 +1,5 @@
 /*
-!/setup.sh
+!/*.*
 !/zsh
 !/git
 !/tmux
@@ -8,6 +8,3 @@
 !/lib
 !/macos
 !/windows
-!/.gitignore
-!/LICENSE.txt
-!/README.md

@@ -3,7 +3,7 @@
 # Sample usage:
 #     while :; do sleep 1; wc -l test.sh.log; done | timeuniq
 
-if @exist gdate; then
+if command -v gdate > /dev/null; then
   DTCOMMAND="gdate"
 else
   DTCOMMAND="date"

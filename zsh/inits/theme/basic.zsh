@@ -33,7 +33,7 @@ function __prompt_pwd_and_git() {
         # <foreground grey>
         echo -n '%F{223}'
         # current directory, rest of
-        echo -n "${PWD##$git_root}"
+        echo -n "${PWD##"$git_root"}"
         # </foreground>
         echo -n '%f'
 

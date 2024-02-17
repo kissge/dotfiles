@@ -18,5 +18,5 @@ add_path "$ZIM_HOME/modules/iTerm2-shell-integration/utilities"
 add_path /usr/local/bin
 
 if (( ${+commands[brew]} )); then
-    deprioritize_fpath $(brew --prefix)/share/zsh/site-functions
+    deprioritize_fpath "$(brew --prefix)"/share/zsh/site-functions
 fi

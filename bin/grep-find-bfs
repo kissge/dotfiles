@@ -4,7 +4,7 @@ root=$1
 shift
 
 GREP=grep
-if which ggrep >/dev/null 2>&1; then
+if command -v ggrep > /dev/null; then
   GREP='ggrep --color=auto'
 fi
 

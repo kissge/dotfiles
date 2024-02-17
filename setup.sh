@@ -1,19 +1,20 @@
 #!/bin/bash
+# shellcheck disable=SC2088
 
 set -Eeuo pipefail
 
 function exist() {
-    which "$1" > /dev/null 2>&1
+    command -v "$1" > /dev/null
 }
 
 function die() {
-    echo $'[Error]\t'"$@" 1>&2
+    echo $'[Error]\t'"$*" 1>&2
     exit 1
 }
 
 function yesno() {
     while :; do
-        read -p "$1 [y/n] " yn
+        read -rp "$1 [y/n] " yn
         case $yn in
         [Yy]*) return 0 ;;
         [Nn]*) return 1 ;;
@@ -111,7 +112,7 @@ fi
 echo '6. Adding some finishing touches...'
 mkdir -pv ~/git
 if exist powershell.exe; then
-    windows_home=$(wslpath $(powershell.exe '$env:UserProfile'))
+    windows_home=$(wslpath "$(powershell.exe '$env:UserProfile')")
     if [ ! -e ~/Downloads ] && [ -e "$windows_home/Downloads" ]; then
         ln -vs "$windows_home/Downloads" ~/
     fi

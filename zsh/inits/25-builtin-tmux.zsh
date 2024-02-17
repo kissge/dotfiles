@@ -5,6 +5,6 @@ function refresh-tmux-env() {
   fi
 
   local vars=$(tmux show-environment | sed -nE '/=/s/(.+?)=(.*)/\1="\2"/p')
-  echo $vars
-  eval export $vars
+  echo "$vars"
+  eval export "$vars"
 }

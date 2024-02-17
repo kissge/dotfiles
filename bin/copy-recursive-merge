@@ -4,7 +4,7 @@ set -Eeuo pipefail
 
 function yesno() {
   while :; do
-    read -p "$1 [y/N] " yn
+    read -rp "$1 [y/N] " yn
     case $yn in
     [Yy]*) return 0 ;;
     [Nn]* | "") return 1 ;;
@@ -13,7 +13,7 @@ function yesno() {
 }
 
 function _diff() {
-  if diff --no-dereference /dev/null /dev/null >/dev/null 2>&1; then
+  if diff --no-dereference /dev/null /dev/null > /dev/null 2>&1; then
     LC_ALL=C diff --no-dereference -qsr "$@" || true
   else
     LC_ALL=C diff -qsr "$@" || true
@@ -33,22 +33,22 @@ echo "Copying all files under $source to $dest."
 diff=$(_diff "$source" "$dest" 2>&1)
 
 echo
-echo "Only in source = new file    :" $(grep -Fc 'Only in '"$source" <<<"$diff")
-echo "Only in dest   = kept as is  :" $(grep -Fc 'Only in '"$dest" <<<"$diff")
-echo "Identical      = overwritten :" $(grep -c '^Files .* and .* are identical$' <<<"$diff")
-echo "Diff           = overwritten :" $(grep -vc '^diff: \|^Only in \|^Files .* and .* are identical$' <<<"$diff")
-if grep -q '^diff:' <<<"$diff"; then
-  echo "Error          = ?           :" $(grep -c '^diff:' <<<"$diff")
+echo "Only in source = new file    :" "$(grep -Fc 'Only in '"$source" <<< "$diff")"
+echo "Only in dest   = kept as is  :" "$(grep -Fc 'Only in '"$dest" <<< "$diff")"
+echo "Identical      = overwritten :" "$(grep -c '^Files .* and .* are identical$' <<< "$diff")"
+echo "Diff           = overwritten :" "$(grep -vc '^diff: \|^Only in \|^Files .* and .* are identical$' <<< "$diff")"
+if grep -q '^diff:' <<< "$diff"; then
+  echo "Error          = ?           :" "$(grep -c '^diff:' <<< "$diff")"
 fi
-echo "Total" $(wc -l <<<"$diff")
+echo "Total" "$(wc -l <<< "$diff")"
 echo
 
 if yesno "See diff?"; then
-  less -RFX <<<"$diff"
+  less -RFX <<< "$diff"
 fi
 
 if yesno "Copy?"; then
-  sed -n 's/File .* is a .* while file \(.*\) is a .*/\1/p' <<<"$diff" | while read -r file; do
+  sed -n 's/File .* is a .* while file \(.*\) is a .*/\1/p' <<< "$diff" | while read -r file; do
     # Overwriting with different kind of file is not always possible, so we need to delete them first.
     rm -vrf "$file"
   done

@@ -5,7 +5,7 @@
 # Note:
 #   Input is expected to be a single line. Second or later lines are silently ignored.
 
-if @exist gdate; then
+if command -v gdate > /dev/null; then
     DTCOMMAND="gdate"
 else
     DTCOMMAND="date"
@@ -30,23 +30,23 @@ fi
 
 log_file=$1
 
-last_line=$(tail -n 1 "$log_file" 2>/dev/null)
+last_line=$(tail -n 1 "$log_file" 2> /dev/null)
 now=$("$DTCOMMAND" "$DTFORMAT")
 tab=$'\t'
 
 if [ -n "$last_line" ]; then
-    last_value=$(cut <<<"$last_line" -d "$tab" -f 3-)
+    last_value=$(cut <<< "$last_line" -d "$tab" -f 3-)
     if [ "$last_value" = "$new_value" ]; then
-        last_time=$(cut <<<"$last_line" -d "$tab" -f 1)
+        last_time=$(cut <<< "$last_line" -d "$tab" -f 1)
         tmp=$(mktemp)
         (
             sed '$ d' "$log_file"
             echo "$last_time$tab$now$tab$last_value"
-        ) >"$tmp"
-        cat "$tmp" >"$log_file"
+        ) > "$tmp"
+        cat "$tmp" > "$log_file"
         rm "$tmp"
         exit
     fi
 fi
 
-echo "$now$tab$now$tab$new_value" >>"$log_file"
+echo "$now$tab$now$tab$new_value" >> "$log_file"

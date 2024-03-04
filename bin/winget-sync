@@ -5,12 +5,12 @@ set -Eeuo pipefail
 TEMP=$(mktemp)
 
 winget.exe export "$TEMP"
-jq '.Sources |= map(
+jq '.Sources |= ([.[] |
   .Packages |= ([.[] | select(
     .PackageIdentifier |
-    test("^Microsoft\\.(AppInstaller|DevHome|DotNet\\.DesktopRuntime|Edge|UI|VCLibs|VCRedist|WindowsTerminal)") |
+    test("^Microsoft\\.(AppInstaller|DevHome|DotNet\\.DesktopRuntime|Edge|UI|VCLibs|VCRedist|VisualStudio\\..+\\.BuildTools|WindowsSDK|WindowsTerminal)") |
     not
   )] | sort_by(.PackageIdentifier))
-)' "$TEMP" > ~/.config/windows/winget.json
+] | sort)' "$TEMP" > ~/.config/windows/winget.json
 
 rm "$TEMP"

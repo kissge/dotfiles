@@ -1,20 +1,7 @@
 {
   "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
-  "CreationDate": "2024-01-10T04:45:13.102-00:00",
+  "CreationDate": "2024-03-04T12:45:14.625-00:00",
   "Sources": [
-    {
-      "Packages": [
-        {
-          "PackageIdentifier": "XPDLPKWG9SW2WD"
-        }
-      ],
-      "SourceDetails": {
-        "Argument": "https://storeedgefd.dsx.mp.microsoft.com/v9.0",
-        "Identifier": "StoreEdgeFD",
-        "Name": "msstore",
-        "Type": "Microsoft.Rest"
-      }
-    },
     {
       "Packages": [
         {
@@ -72,7 +59,23 @@
         "Name": "winget",
         "Type": "Microsoft.PreIndexed.Package"
       }
+    },
+    {
+      "Packages": [
+        {
+          "PackageIdentifier": "XPDLPKWG9SW2WD"
+        },
+        {
+          "PackageIdentifier": "XPDM1ZW6815MQM"
+        }
+      ],
+      "SourceDetails": {
+        "Argument": "https://storeedgefd.dsx.mp.microsoft.com/v9.0",
+        "Identifier": "StoreEdgeFD",
+        "Name": "msstore",
+        "Type": "Microsoft.Rest"
+      }
     }
   ],
-  "WinGetVersion": "1.6.3482"
+  "WinGetVersion": "1.7.10582"
 }

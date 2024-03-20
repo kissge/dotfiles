@@ -22,6 +22,7 @@ prune = true
 [alias]
 # Informative
 dc = diff --cached
+dp = !git diff \"$(git show-parent-branch)\"
 l = log --branches --graph
 lp = !git log \"$(git show-parent-branch)\"..
 whoami = !echo $(git config --get user.name) '<'$(git config --get user.email)'>'

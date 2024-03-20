@@ -33,7 +33,7 @@ show-default-branch = !{ \
         git branch -l master ";" \
     } 2> /dev/null | sed -n '"1s/^[* ]*//;1p"'
 show-current-branch = rev-parse --abbrev-ref HEAD
-show-parent-branch = !git show-branch | cut -d']' -f1 | grep -F '*' | \
+show-parent-branch = !git show-branch | cut -d']' -f1 | grep -F '*' | grep -vF \"$(git show-current-branch)\" | \
     head -n1 | sed -e 's/^.*\\[//' | sed -e 's/[~^].*//'
 
 # Fixing history

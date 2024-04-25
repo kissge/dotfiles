@@ -33,4 +33,6 @@ zstyle ':fzf-tab:complete:*:options' fzf-flags '--no-preview'
 zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
 zstyle ':fzf-tab:complete:*:argument-1' fzf-flags '--no-preview'
 
+add_source /opt/google-cloud-cli/completion.zsh.inc
+
 autoload -U compinit && compinit

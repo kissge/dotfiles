@@ -4,6 +4,12 @@ function add_path() {
     fi
 }
 
+function add_source() {
+    if [ -f "$1" ]; then
+        source "$1"
+    fi
+}
+
 function deprioritize_fpath() {
     fpath=( ${fpath[@]:#"$1"} "$1" )
 }
@@ -20,3 +26,5 @@ add_path /usr/local/bin
 if (( ${+commands[brew]} )); then
     deprioritize_fpath "$(brew --prefix)"/share/zsh/site-functions
 fi
+
+add_source /opt/google-cloud-cli/path.zsh.inc

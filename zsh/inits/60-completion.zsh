@@ -35,4 +35,6 @@ zstyle ':fzf-tab:complete:*:argument-1' fzf-flags '--no-preview'
 
 add_source /opt/google-cloud-cli/completion.zsh.inc
 
+FZF_DEFAULT_OPTS+=' --exact'
+
 autoload -U compinit && compinit

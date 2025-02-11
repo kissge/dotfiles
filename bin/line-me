@@ -9,7 +9,7 @@ set -Eeuo pipefail
 
 . "${HOME}"/.line-api-token 2> /dev/null || . "${HOME}"/Dropbox/Settings/.line-api-token
 
-[ "${1:-}" = "--no-header" ] && shift || header="$(whoami)"@"$(uname -n)"
+header="$(head -c20 <<< $(whoami)@$(uname -n))"
 
 option=(-H "Authorization: Bearer $MESSAGING_API_TOKEN" -H 'Content-Type: application/json')
 if curl --fail-with-body -V > /dev/null 2>&1; then

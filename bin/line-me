@@ -11,15 +11,26 @@ set -Eeuo pipefail
 
 [ "${1:-}" = "--no-header" ] && shift || header="$(whoami)"@"$(uname -n)"
 
-option=(-H "Authorization: Bearer $TOKEN")
+option=(-H "Authorization: Bearer $MESSAGING_API_TOKEN" -H 'Content-Type: application/json')
 if curl --fail-with-body -V > /dev/null 2>&1; then
     option+=(--fail-with-body --silent)
 fi
 
 (
-    [[ -n "${header:-}" ]] && echo "$header"
     perl -pe 'chomp if eof'
     printf "\0"
 ) | while IFS= read -r -d "" -n "${SPLIT:-950}" chunk; do
-    curl "${option[@]}" --data-urlencode message="$chunk" https://notify-api.line.me/api/notify "$@"
+    curl "${option[@]}" -d "$(jq -n '
+    {
+        to: $to,
+        messages: [{
+            type: "text",
+            text: $text,
+            sender: {
+                name: $name
+            }
+        }]
+    }' --arg to "$MESSAGING_API_TO" \
+        --arg text "$chunk" \
+        --arg name "$header")" https://api.line.me/v2/bot/message/push "$@"
 done

@@ -9,7 +9,11 @@ function __hook_timer_precmd() {
         __hook_timer_start=
 
         if ((__hook_timer_duration > 300)); then
-            __hook_timer_report="\`$__hook_timer_command\` completed in $__hook_timer_duration seconds"
+            if which python > /dev/null; then
+                __hook_timer_report="\`$__hook_timer_command\` completed in $(python -c 'from datetime import timedelta; print(timedelta(seconds='$__hook_timer_duration'))')"
+            else
+                __hook_timer_report="\`$__hook_timer_command\` completed in $__hook_timer_duration seconds"
+            fi
         else
             __hook_timer_report=
         fi

@@ -1,9 +1,12 @@
 {
   "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
-  "CreationDate": "2024-03-04T12:45:14.625-00:00",
+  "CreationDate": "2025-03-17T18:45:06.831-00:00",
   "Sources": [
     {
       "Packages": [
+        {
+          "PackageIdentifier": "Adobe.CreativeCloud"
+        },
         {
           "PackageIdentifier": "AgileBits.1Password"
         },
@@ -29,7 +32,7 @@
           "PackageIdentifier": "Google.GoogleDrive"
         },
         {
-          "PackageIdentifier": "LINE.LINE"
+          "PackageIdentifier": "Microsoft.OneDrive"
         },
         {
           "PackageIdentifier": "Microsoft.PowerToys"
@@ -41,6 +44,9 @@
           "PackageIdentifier": "Microsoft.VisualStudioCode"
         },
         {
+          "PackageIdentifier": "Microsoft.WSL"
+        },
+        {
           "PackageIdentifier": "OBSProject.OBSStudio"
         },
         {
@@ -48,6 +54,9 @@
         },
         {
           "PackageIdentifier": "Toggl.TogglTrack"
+        },
+        {
+          "PackageIdentifier": "VideoLAN.VLC"
         },
         {
           "PackageIdentifier": "Zoom.Zoom"
@@ -63,10 +72,7 @@
     {
       "Packages": [
         {
-          "PackageIdentifier": "XPDLPKWG9SW2WD"
-        },
-        {
-          "PackageIdentifier": "XPDM1ZW6815MQM"
+          "PackageIdentifier": "XPFCC4CD725961"
         }
       ],
       "SourceDetails": {
@@ -77,5 +83,5 @@
       }
     }
   ],
-  "WinGetVersion": "1.7.10582"
+  "WinGetVersion": "1.6.10121"
 }

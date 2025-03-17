@@ -4,8 +4,6 @@ zmodule utility
 
 zmodule asdf
 
-zmodule gnachman/iTerm2-shell-integration --source shell_integration/zsh
-
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-completions
 

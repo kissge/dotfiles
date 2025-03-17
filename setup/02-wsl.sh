@@ -16,5 +16,5 @@ if exist powershell.exe; then
 fi
 
 if exist ssh.exe; then
-    ln -vs ~/.config/git/{,.}wsl.inc
+    ln -vsf ~/.config/git/{,.}wsl.inc
 fi

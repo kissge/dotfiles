@@ -2,7 +2,7 @@
 
 ## Installation
 
-Install `git` and `zsh` first, then:
+Install `diff`, `git`, `less` and `zsh` first, then:
 
 ```sh
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/kissge/dotfiles/master/setup.sh)"

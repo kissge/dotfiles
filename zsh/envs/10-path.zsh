@@ -19,6 +19,7 @@ ZIM_HOME="${ZDOTDIR:-${HOME}}"/.zim
 add_path "$HOME"/.config/bin
 add_path "$HOME"/.config/bin/vendor
 add_path "$HOME"/.local/bin
+add_path /opt/homebrew/bin
 add_path "$ZIM_HOME/modules/iTerm2-shell-integration/utilities"
 
 add_path /usr/local/bin
@@ -28,3 +29,5 @@ if (( ${+commands[brew]} )); then
 fi
 
 add_source /opt/google-cloud-cli/path.zsh.inc
+
+eval "$(mise activate zsh)"

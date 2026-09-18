@@ -19,12 +19,14 @@ SAVEHIST=2147483647
         HISTFILE="$dir"/zsh-history
 
         if [ -f "${HOME}"/.zsh_history ]; then
-            echo
-            echo "[Alert] You have ~/.zsh_history but current HISTFILE is ${HISTFILE}."
-            ls -lh "${HOME}"/.zsh_history
-            echo "Consider merging them by running this:"
-            echo "  $ fc -R ~/.zsh_history && fc -W && rm ~/.zsh_history"
-            echo
+            if [ -s "${HOME}"/.zsh_history ]; then
+                echo
+                echo "[Alert] You have ~/.zsh_history but current HISTFILE is ${HISTFILE}."
+                ls -lh "${HOME}"/.zsh_history
+                echo "Consider merging them by running this:"
+                echo "  $ fc -R ~/.zsh_history && fc -W && rm ~/.zsh_history"
+                echo
+            fi
         fi
     else
         HISTFILE="${HOME}"/.zsh_history
